@@ -66,10 +66,10 @@ install(EXPORT ${LIBRARY_NAME}Targets
 # Enable testing
 if(BUILD_TESTS)
     enable_testing()
-    add_subdirectory(Test)
+    add_subdirectory(test)
 endif()
 
 # Build examples
 if(BUILD_EXAMPLES)
-    add_subdirectory(Example)
+    add_subdirectory(example)
 endif()
