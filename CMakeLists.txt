@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Options for building tests and examples
 option(BUILD_TESTS "Build unit tests" ON)
 option(BUILD_EXAMPLES "Build example programs" ON)
+option(BUILD_SHARED_LIBS "Build shared libraries instead of static" OFF)
 
 # Define the library name
 set(LIBRARY_NAME whatwg_infra)
@@ -25,8 +26,17 @@ file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-# Create the library
+# Create the library (type determined by BUILD_SHARED_LIBS)
 add_library(${LIBRARY_NAME} ${SOURCE_FILES} ${HEADER_FILES})
+
+# Set compile definitions based on library type
+if(BUILD_SHARED_LIBS)
+    # Building a shared/dynamic library
+    target_compile_definitions(${LIBRARY_NAME} 
+        PRIVATE WHATWG_INFRA_EXPORTS
+        PUBLIC WHATWG_INFRA_DYNAMIC
+    )
+endif()
 
 # Specify include directories
 target_include_directories(${LIBRARY_NAME}
@@ -40,6 +50,14 @@ if(MSVC)
     target_compile_options(${LIBRARY_NAME} PRIVATE /W4)
 else()
     target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+# Set visibility for shared libraries
+if(BUILD_SHARED_LIBS)
+    set_target_properties(${LIBRARY_NAME} PROPERTIES
+        CXX_VISIBILITY_PRESET hidden
+        VISIBILITY_INLINES_HIDDEN ON
+    )
 endif()
 
 # Installation rules

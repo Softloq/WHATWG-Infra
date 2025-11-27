@@ -1,6 +1,7 @@
 #ifndef WHATWG_INFRA_TEST_HPP
 #define WHATWG_INFRA_TEST_HPP
 
+#include "api.hpp"
 #include <string>
 
 namespace whatwg {
@@ -15,19 +16,19 @@ public:
    * @brief Construct a new Test object
    * @param name The name for this test instance
    */
-  explicit Test(const std::string &name);
+  WHATWG_INFRA_API explicit Test(const std::string &name);
 
   /**
    * @brief Get the name of this test instance
    * @return const std::string& The name
    */
-  const std::string &getName() const;
+  WHATWG_INFRA_API const std::string &getName() const;
 
   /**
    * @brief Run the test
    * @return true if the test passes, false otherwise
    */
-  bool run() const;
+  WHATWG_INFRA_API bool run() const;
 
 private:
   std::string m_name;
