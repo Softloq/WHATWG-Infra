@@ -11,26 +11,26 @@ namespace infra {
  */
 class Test {
 public:
-    /**
-     * @brief Construct a new Test object
-     * @param name The name for this test instance
-     */
-    explicit Test(const std::string& name);
-    
-    /**
-     * @brief Get the name of this test instance
-     * @return const std::string& The name
-     */
-    const std::string& getName() const;
-    
-    /**
-     * @brief Run the test
-     * @return true if the test passes, false otherwise
-     */
-    bool run() const;
+  /**
+   * @brief Construct a new Test object
+   * @param name The name for this test instance
+   */
+  explicit Test(const std::string &name);
+
+  /**
+   * @brief Get the name of this test instance
+   * @return const std::string& The name
+   */
+  const std::string &getName() const;
+
+  /**
+   * @brief Run the test
+   * @return true if the test passes, false otherwise
+   */
+  bool run() const;
 
 private:
-    std::string m_name;
+  std::string m_name;
 };
 
 } // namespace infra

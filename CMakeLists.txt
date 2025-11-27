@@ -7,6 +7,10 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Options for building tests and examples
+option(BUILD_TESTS "Build unit tests" ON)
+option(BUILD_EXAMPLES "Build example programs" ON)
+
 # Define the library name
 set(LIBRARY_NAME whatwg_infra)
 
@@ -58,3 +62,14 @@ install(EXPORT ${LIBRARY_NAME}Targets
     NAMESPACE ${LIBRARY_NAME}::
     DESTINATION lib/cmake/${LIBRARY_NAME}
 )
+
+# Enable testing
+if(BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(Test)
+endif()
+
+# Build examples
+if(BUILD_EXAMPLES)
+    add_subdirectory(Example)
+endif()
