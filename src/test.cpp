@@ -1,8 +1,7 @@
-#include "test.hpp"
+#include <test.hpp>
 #include <iostream>
 
-namespace whatwg {
-namespace infra {
+namespace Softloq::WHATWG::Infra {
 
 Test::Test(const std::string &name) : m_name(name) {
   std::cout << "Test instance created: " << m_name << std::endl;
@@ -16,5 +15,4 @@ bool Test::run() const {
   return !m_name.empty();
 }
 
-} // namespace infra
-} // namespace whatwg
+} // namespace Softloq::WHATWG::Infra

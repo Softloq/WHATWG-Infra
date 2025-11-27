@@ -6,7 +6,7 @@ int main() {
   std::cout << std::endl;
 
   // Create a test instance
-  whatwg::infra::Test myTest("ExampleTest");
+  Softloq::WHATWG::Infra::Test myTest("ExampleTest");
 
   // Get the test name
   std::cout << "Test name: " << myTest.getName() << std::endl;

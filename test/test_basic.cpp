@@ -6,7 +6,7 @@ int main() {
   std::cout << "Running basic tests for WHATWG Infra library..." << std::endl;
 
   // Test 1: Constructor and getName
-  whatwg::infra::Test test1("BasicTest");
+  Softloq::WHATWG::Infra::Test test1("BasicTest");
   assert(test1.getName() == "BasicTest");
   std::cout << "✓ Test 1 passed: Constructor and getName()" << std::endl;
 
@@ -16,7 +16,7 @@ int main() {
             << std::endl;
 
   // Test 3: run() returns false for empty name
-  whatwg::infra::Test test2("");
+  Softloq::WHATWG::Infra::Test test2("");
   assert(test2.run() == false);
   std::cout << "✓ Test 3 passed: run() returns false for empty name"
             << std::endl;
