@@ -32,8 +32,8 @@ public:
   template <size_t N>
   String(const char16_t (&str)[N]) : m_value(str) {}
 
-  const std::u16string& value() const noexcept { return m_value; }
-  std::u16string& value() noexcept { return m_value; }
+  const value_type& value() const noexcept { return m_value; }
+  value_type& value() noexcept { return m_value; }
 
   // String-like interface
   auto begin() const noexcept { return m_value.begin(); }

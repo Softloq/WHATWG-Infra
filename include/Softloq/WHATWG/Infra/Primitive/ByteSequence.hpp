@@ -25,11 +25,11 @@ public:
 
   ByteSequence() = default;
   ByteSequence(std::initializer_list<Byte> init) : m_value(init) {}
-  explicit ByteSequence(const std::vector<Byte>& value) : m_value(value) {}
-  explicit ByteSequence(std::vector<Byte>&& value) : m_value(std::move(value)) {}
+  explicit ByteSequence(const value_type& value) : m_value(value) {}
+  explicit ByteSequence(value_type&& value) : m_value(std::move(value)) {}
 
-  const std::vector<Byte>& value() const noexcept { return m_value; }
-  std::vector<Byte>& value() noexcept { return m_value; }
+  const value_type& value() const noexcept { return m_value; }
+  value_type& value() noexcept { return m_value; }
 
   // Vector-like interface
   auto begin() const noexcept { return m_value.begin(); }
