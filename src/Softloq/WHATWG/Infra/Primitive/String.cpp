@@ -2,18 +2,20 @@
 
 namespace Softloq::WHATWG::Infra::Primitive {
 
-bool string_is_identical(const string& a, const string& b) noexcept {
+bool String::is_identical_to(const String& other) const noexcept {
   // Strings are identical if they consist of the same sequence of code units
-  return a == b;
+  return m_value == other.m_value;
 }
 
-bool is_code_unit_prefix(const string& potential_prefix, const string& input) {
+bool String::is_code_unit_prefix(const String& input) const {
   // Algorithm from WHATWG Infra specification
+  // Note: 'this' is potentialPrefix
+  
   size_t i = 0;
   
   while (true) {
     // If i is greater than or equal to potentialPrefix's length, return true
-    if (i >= potential_prefix.size()) {
+    if (i >= this->size()) {
       return true;
     }
     
@@ -23,7 +25,7 @@ bool is_code_unit_prefix(const string& potential_prefix, const string& input) {
     }
     
     // Let potentialPrefixCodeUnit be the ith code unit of potentialPrefix
-    char16_t potential_prefix_code_unit = potential_prefix[i];
+    char16_t potential_prefix_code_unit = (*this)[i];
     
     // Let inputCodeUnit be the ith code unit of input
     char16_t input_code_unit = input[i];
@@ -38,29 +40,28 @@ bool is_code_unit_prefix(const string& potential_prefix, const string& input) {
   }
 }
 
-bool is_code_unit_suffix(const string& potential_suffix, const string& input) {
+bool String::is_code_unit_suffix(const String& input) const {
   // Algorithm from WHATWG Infra specification
+  // Note: 'this' is potentialSuffix
+  
   size_t i = 1;
   
   while (true) {
     // Let potentialSuffixIndex be potentialSuffix's length − i
-    size_t potential_suffix_index = potential_suffix.size() - i;
-    
-    // Let inputIndex be input's length − i
-    size_t input_index = input.size() - i;
-    
-    // If potentialSuffixIndex is less than 0, then return true
-    if (i > potential_suffix.size()) {
+    // Check bounds carefully with size_t (unsigned)
+    if (i > this->size()) {
       return true;
     }
+    size_t potential_suffix_index = this->size() - i;
     
-    // If inputIndex is less than 0, then return false
+    // Let inputIndex be input's length − i
     if (i > input.size()) {
       return false;
     }
+    size_t input_index = input.size() - i;
     
     // Let potentialSuffixCodeUnit be the potentialSuffixIndexth code unit of potentialSuffix
-    char16_t potential_suffix_code_unit = potential_suffix[potential_suffix_index];
+    char16_t potential_suffix_code_unit = (*this)[potential_suffix_index];
     
     // Let inputCodeUnit be the inputIndexth code unit of input
     char16_t input_code_unit = input[input_index];
@@ -75,19 +76,19 @@ bool is_code_unit_suffix(const string& potential_suffix, const string& input) {
   }
 }
 
-size_t code_point_length(const string& s) {
+size_t String::code_point_length() const {
   // Count the number of code points, accounting for surrogate pairs
   size_t count = 0;
   size_t i = 0;
   
-  while (i < s.size()) {
-    char16_t code_unit = s[i];
+  while (i < m_value.size()) {
+    char16_t code_unit = m_value[i];
     
     // Check if this is a leading surrogate
     if (code_unit >= 0xD800 && code_unit <= 0xDBFF) {
       // Check if there's a trailing surrogate following
-      if (i + 1 < s.size()) {
-        char16_t next_code_unit = s[i + 1];
+      if (i + 1 < m_value.size()) {
+        char16_t next_code_unit = m_value[i + 1];
         if (next_code_unit >= 0xDC00 && next_code_unit <= 0xDFFF) {
           // This is a surrogate pair, counts as one code point
           ++count;
@@ -105,9 +106,9 @@ size_t code_point_length(const string& s) {
   return count;
 }
 
-bool is_ascii_string(const string& s) {
+bool String::is_ascii_string() const {
   // An ASCII string has all code points in the ASCII range
-  for (char16_t code_unit : s) {
+  for (char16_t code_unit : m_value) {
     // For ASCII, code units and code points are the same
     if (code_unit > 0x007F) {
       return false;
@@ -116,9 +117,9 @@ bool is_ascii_string(const string& s) {
   return true;
 }
 
-bool is_isomorphic_string(const string& s) {
+bool String::is_isomorphic_string() const {
   // An isomorphic string has all code points in range U+0000 to U+00FF
-  for (char16_t code_unit : s) {
+  for (char16_t code_unit : m_value) {
     // For this range, code units and code points are the same
     if (code_unit > 0x00FF) {
       return false;
@@ -127,16 +128,16 @@ bool is_isomorphic_string(const string& s) {
   return true;
 }
 
-bool is_scalar_value_string(const string& s) {
+bool String::is_scalar_value_string() const {
   // A scalar value string has no surrogates
-  for (size_t i = 0; i < s.size(); ++i) {
-    char16_t code_unit = s[i];
+  for (size_t i = 0; i < m_value.size(); ++i) {
+    char16_t code_unit = m_value[i];
     
     // Check if this is a leading surrogate
     if (code_unit >= 0xD800 && code_unit <= 0xDBFF) {
       // Check if there's a trailing surrogate following
-      if (i + 1 < s.size()) {
-        char16_t next_code_unit = s[i + 1];
+      if (i + 1 < m_value.size()) {
+        char16_t next_code_unit = m_value[i + 1];
         if (next_code_unit >= 0xDC00 && next_code_unit <= 0xDFFF) {
           // This is a valid surrogate pair, which is a scalar value
           ++i; // Skip the trailing surrogate
@@ -156,19 +157,19 @@ bool is_scalar_value_string(const string& s) {
   return true;
 }
 
-string convert_to_scalar_value_string(const string& s) {
-  // Replace any surrogates with U+FFFD (�)
-  string result;
-  result.reserve(s.size());
+String String::convert_to_scalar_value_string() const {
+  // Replace any surrogates with U+FFFD ()
+  std::u16string result;
+  result.reserve(m_value.size());
   
-  for (size_t i = 0; i < s.size(); ++i) {
-    char16_t code_unit = s[i];
+  for (size_t i = 0; i < m_value.size(); ++i) {
+    char16_t code_unit = m_value[i];
     
     // Check if this is a leading surrogate
     if (code_unit >= 0xD800 && code_unit <= 0xDBFF) {
       // Check if there's a trailing surrogate following
-      if (i + 1 < s.size()) {
-        char16_t next_code_unit = s[i + 1];
+      if (i + 1 < m_value.size()) {
+        char16_t next_code_unit = m_value[i + 1];
         if (next_code_unit >= 0xDC00 && next_code_unit <= 0xDFFF) {
           // This is a valid surrogate pair, keep it
           result.push_back(code_unit);
@@ -193,7 +194,7 @@ string convert_to_scalar_value_string(const string& s) {
     result.push_back(code_unit);
   }
   
-  return result;
+  return String(result);
 }
 
 } // namespace Softloq::WHATWG::Infra::Primitive
