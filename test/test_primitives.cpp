@@ -238,6 +238,43 @@ int main() {
   test_byte_sequence();
   test_code_point();
   test_string();
+
+  // New tests
+  std::cout << "Testing Null primitives..." << std::endl;
+  assert(Null() == nullptr);
+  assert(std::format("{}", Null()) == "null");
+  std::cout << "✓ Null tests passed" << std::endl;
+
+  std::cout << "Testing Boolean primitives..." << std::endl;
+  assert(Boolean(true).value() == true);
+  assert(Boolean(false).value() == false);
+  assert(std::format("{}", Boolean(true)) == "true");
+  assert(std::format("{}", Boolean(false)) == "false");
+  std::cout << "✓ Boolean tests passed" << std::endl;
+
+  std::cout << "Testing Number primitives..." << std::endl;
+  assert(UInteger8(255).value() == 255);
+  assert(Integer8(-128).value() == -128);
+  assert(UInteger128(10).low() == 10);
+  assert(UInteger128(1, 0).high() == 1);
+  assert(std::format("{}", UInteger8(0xFF)) == "255");
+  // assert(std::format("{}", UInteger128(0, 0xFF)) == "0x000000000000000000000000000000FF"); // Check format if needed
+  std::cout << "✓ Number tests passed" << std::endl;
+
+  std::cout << "Testing Time primitives..." << std::endl;
+  // Just check compilation and basic access for now as time values are dynamic
+  Moment m(std::chrono::system_clock::now());
+  Duration d(std::chrono::seconds(5));
+  assert(d.value().count() == 5.0);
+  std::cout << "✓ Time tests passed" << std::endl;
+
+  std::cout << "Testing Singleton primitives..." << std::endl;
+  assert(Allowed() == Allowed());
+  assert(std::format("{}", Allowed()) == "allowed");
+  assert(std::format("{}", Blocked()) == "blocked");
+  assert(std::format("{}", Failure()) == "failure");
+  assert(std::format("{}", Success()) == "success");
+  std::cout << "✓ Singleton tests passed" << std::endl;
   
   std::cout << "\nAll primitives tests passed!" << std::endl;
   return 0;
