@@ -8,8 +8,16 @@ A C++23 implementation of the [WHATWG Infra specification](https://infra.spec.wh
 
 ## Build
 
+Bash
 ```bash
 mkdir build && cd build
+cmake ..
+cmake --build .
+```
+
+Powershell
+```powershell
+mkdir build; cd build
 cmake ..
 cmake --build .
 ```
@@ -24,12 +32,12 @@ Build options (to be re-added to CMakeLists.txt as primitives are implemented):
 ### Directory Layout
 
 ```
-include/Softloq/WHATWG/Infra/   – Public headers (installed with library)
-inline/Softloq/WHATWG/Infra/    – Inline/template implementations (#included by headers)
-src/Softloq/WHATWG/Infra/       – .cpp translation units
-tests/                          – Test programs
+include/Softloq/WHATWG/Infra/   – Headers (.hpp, .tpp, .inl) for the static/shared library
+inline/Softloq/WHATWG/Infra/    – Header-only version of the library
+src/Softloq/WHATWG/Infra/       – Implementations (.cpp) of the translation units
+tests/                          – Unit tests
 examples/                       – Example programs
-docs/                           – Documentation (empty)
+docs/                           – HTML Documentation
 ```
 
 ### Key Headers

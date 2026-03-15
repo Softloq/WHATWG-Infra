@@ -1,0 +1,9 @@
+/**
+ * @file Softloq/WHATWG/Infra/API-Library/Precompiled.pch
+ * @author Softloq CEO - Brandon Foster (Paradox Gene)
+ * @brief This is the precompiled header for the WHATWG Infra library, including commonly used headers to improve compilation times.
+ * 
+ * Copyright (c) 2026 Softloq. All rights reserved.
+ * Softloq implementation of the WHATWG Infra library.
+ * This is the precompiled header for the WHATWG Infra library, including commonly used headers to improve compilation times.
+ */

@@ -2,7 +2,7 @@
 
 A C++23 implementation of the [WHATWG Infra specification](https://infra.spec.whatwg.org/), providing strongly-typed primitive types.
 
-**Author:** Brandon Foster (Paradox Gene), Softloq
+**Author:** [Softloq CEO - Brandon Foster (Paradox Gene)](https://github.com/BrandonFoster)
 **License:** [MIT](LICENSE)
 
 ---
@@ -22,8 +22,16 @@ The WHATWG Infra specification defines the foundational primitives used across a
 
 ## Building
 
+Bash
 ```bash
 mkdir build && cd build
+cmake ..
+cmake --build .
+```
+
+Powershell
+```powershell
+mkdir build; cd build
 cmake ..
 cmake --build .
 ```
@@ -61,12 +69,12 @@ Or include individual primitive headers as needed.
 ## Project Layout
 
 ```
-include/Softloq/WHATWG/Infra/   – Public headers (installed with the library)
-inline/Softloq/WHATWG/Infra/    – Inline and template implementations
-src/Softloq/WHATWG/Infra/       – .cpp translation units
+include/Softloq/WHATWG/Infra/   – Headers (.hpp, .tpp, .inl) for the static/shared library
+inline/Softloq/WHATWG/Infra/    – Header-only version of the library
+src/Softloq/WHATWG/Infra/       – Implementations (.cpp) of the translation units
 tests/                          – Unit tests
 examples/                       – Example programs
-docs/                           – Documentation
+docs/                           – HTML Documentation
 ```
 
 ---
