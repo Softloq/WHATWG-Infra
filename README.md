@@ -36,25 +36,13 @@ cmake --build .
 | `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` | `ON` | Build example programs |
 | `SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS` | `OFF` | Build as shared library instead of static |
 
-Example — build as a shared library without tests:
-
-```bash
-cmake .. -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=ON -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=OFF
-cmake --build .
-```
+See [examples/README.md](examples/README.md) for instructions on building examples.
 
 ---
 
 ## Testing
 
-Tests are built alongside the library when `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON` (the default). After building, run:
-
-```bash
-cd build
-ctest --output-on-failure
-```
-
-Test source files live in [tests/](tests/).
+See [tests/README.md](tests/README.md) for instructions on running tests.
 
 ---
 
@@ -85,15 +73,7 @@ docs/                           – Documentation
 
 ## Documentation
 
-Documentation lives in [docs/](docs/). To generate it locally (requires [Doxygen](https://www.doxygen.nl/)):
-
-```bash
-doxygen Doxyfile
-```
-
-The generated output will be in `docs/html/`. Open `docs/html/index.html` in a browser.
-
-For the upstream specification this library implements, see the [WHATWG Infra standard](https://infra.spec.whatwg.org/).
+See [docs/README.md](docs/README.md) for instructions on generating documentation.
 
 ---
 
