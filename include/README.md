@@ -7,7 +7,7 @@ This folder represents all of the C++ header files (.hpp, .tpp, .inl) of the lib
 ```
 Softloq/WHATWG/Infra/
 ├── API-Library/
-│   └── Macro.hpp               - This header defines the API export/import macro for building static or dynamic libraries.
+│   └── Macro.hpp               - This header defines the API export/import macro for building static or shared libraries.
 ├── Primitive/
 └── Primitives/
     └── All.hpp                 - This header includes all primitive type headers for convenience.
