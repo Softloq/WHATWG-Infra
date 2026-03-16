@@ -19,7 +19,7 @@ Null::~Null() noexcept = default;
 
 PrimitiveType Null::get_type() const noexcept
 {
-    return PrimitiveType::Invalid;
+    return PrimitiveType::Null;
 }
 
 } // namespace Softloq::WHATWG::Infra
