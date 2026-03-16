@@ -27,8 +27,8 @@ class Null final : public Primitive
 {
 // Constructors and destructor
 public:
-    SOFTLOQ_WHATWG_INFRA_API Null();
-    SOFTLOQ_WHATWG_INFRA_API ~Null();
+    SOFTLOQ_WHATWG_INFRA_API Null() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ~Null() noexcept;
 
 public:
     /**
@@ -36,7 +36,7 @@ public:
      * 
      * @return The type of the primitive.
      */
-    SOFTLOQ_WHATWG_INFRA_API PrimitiveType get_type() const override;
+    SOFTLOQ_WHATWG_INFRA_API [[nodiscard]] PrimitiveType get_type() const noexcept override;
 
 // Delete copy and move constructors and assignment operators
 public:

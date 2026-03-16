@@ -14,10 +14,10 @@
 namespace Softloq::WHATWG::Infra
 {
 
-Null::Null() = default;
-Null::~Null() = default;
+Null::Null() noexcept = default;
+Null::~Null() noexcept = default;
 
-PrimitiveType Null::get_type() const
+PrimitiveType Null::get_type() const noexcept
 {
     return PrimitiveType::Invalid;
 }
