@@ -4,5 +4,5 @@ Tests are built alongside the library when `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON`
 
 ```bash
 cd build
-ctest --output-on-failure
+ctest --output-on-failure --test-dir tests
 ```
