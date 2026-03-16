@@ -9,8 +9,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 # Options for building tests and examples
-option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTS "Build WHATWG Infra unit tests" ON)
-option(SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES "Build WHATWG Infra example programs" ON)
+option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTS "Build WHATWG Infra unit tests" OFF)
+option(SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES "Build WHATWG Infra example programs" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS "Build WHATWG Infra shared libraries instead of static" OFF)
 
 # Define the library name
@@ -81,3 +81,12 @@ install(EXPORT ${LIBRARY_NAME}Targets
     NAMESPACE ${LIBRARY_NAME}::
     DESTINATION lib/cmake/${LIBRARY_NAME}
 )
+
+# Add subdirectories for tests and examples
+if (SOFTLOQ_WHATWG_INFRA_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
+if (SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()

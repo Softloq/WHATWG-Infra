@@ -34,7 +34,7 @@ public:
     /**
      * @brief Get the type of the primitive.
      * 
-     * @return The type of the primitive.
+     * @return The type of the primitive, which is PrimitiveType::Null.
      */
     SOFTLOQ_WHATWG_INFRA_API [[nodiscard]] PrimitiveType get_type() const noexcept override;
 
