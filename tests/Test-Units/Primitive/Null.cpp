@@ -32,3 +32,13 @@ TEST(NullPrimitiveTest, NullFormatting)
     EXPECT_EQ(formatted, "null");
 }
 
+/**
+ * @brief Test that the Null primitive type can be printed to an output stream.
+ */
+TEST(NullPrimitiveTest, NullOutputStream)
+{
+    Null null_value;
+    std::ostringstream oss;
+    oss << null_value;
+    EXPECT_EQ(oss.str(), "null");
+}

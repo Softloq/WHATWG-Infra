@@ -42,5 +42,6 @@ public:
 } // namespace Softloq::WHATWG::Infra
 
 #include "Softloq/WHATWG/Infra/Primitive/Null/Formatter.tpp"
+#include "Softloq/WHATWG/Infra/Primitive/Null/OStream.inl"
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NULL_NULL_HPP
