@@ -1,4 +1,4 @@
-name: Tests
+name: Linux-Tests
 
 on:
   push:
@@ -8,53 +8,53 @@ on:
 
 jobs:
   test:
-    name: Windows
-    runs-on: windows-latest
+    name: Linux
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Configure (Shared Library)
-        shell: pwsh
+        shell: bash
         run: |
           mkdir build-shared
           cd build-shared
-          cmake .. `
-            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON `
-            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=ON `
+          cmake .. \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=ON \
             -DSOFTLOQ_WHATWG_INFRA_HEADER_ONLY=OFF
 
       - name: Build (Shared Library)
-        shell: pwsh
+        shell: bash
         run: |
           cd build-shared
           cmake --build . --config Release
 
       - name: Test (Shared Library)
-        shell: pwsh
+        shell: bash
         run: |
           cd build-shared
           ctest --build-config Release --output-on-failure --test-dir tests
 
       - name: Configure (Header-Only)
-        shell: pwsh
+        shell: bash
         run: |
           mkdir build-header-only
           cd build-header-only
-          cmake .. `
-            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON `
-            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=OFF `
+          cmake .. \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=OFF \
             -DSOFTLOQ_WHATWG_INFRA_HEADER_ONLY=ON
 
       - name: Build (Header-Only)
-        shell: pwsh
+        shell: bash
         run: |
           cd build-header-only
           cmake --build . --config Release
 
       - name: Test (Header-Only)
-        shell: pwsh
+        shell: bash
         run: |
           cd build-header-only
           ctest --build-config Release --output-on-failure --test-dir tests
