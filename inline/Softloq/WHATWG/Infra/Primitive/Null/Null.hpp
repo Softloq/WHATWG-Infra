@@ -35,7 +35,7 @@ public:
      * 
      * @return The type of the primitive, which is PrimitiveType::Null.
      */
-    constexpr [[nodiscard]] PrimitiveType get_type() const noexcept override
+    [[nodiscard]] constexpr PrimitiveType get_type() const noexcept override
     {
         return PrimitiveType::Null;
     }

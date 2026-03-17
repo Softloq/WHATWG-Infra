@@ -36,7 +36,7 @@ public:
      * 
      * @return The type of the primitive, which is PrimitiveType::Null.
      */
-    SOFTLOQ_WHATWG_INFRA_API [[nodiscard]] PrimitiveType get_type() const noexcept override;
+    [[nodiscard]] SOFTLOQ_WHATWG_INFRA_API PrimitiveType get_type() const noexcept override;
 };
 
 } // namespace Softloq::WHATWG::Infra
