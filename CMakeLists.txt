@@ -16,7 +16,7 @@ option(SOFTLOQ_WHATWG_INFRA_HEADER_ONLY "Build WHATWG Infra as a header-only lib
 # Define the library name
 set(LIBRARY_NAME Softloq-WHATWG-Infra)
 
-if (SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
+if(SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
     # Collect all header files (.hpp, .tpp, and .inl) from inline directory
     file(GLOB_RECURSE HEADER_FILES 
         "${CMAKE_CURRENT_SOURCE_DIR}/inline/*.hpp"
@@ -42,8 +42,6 @@ if (SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
         DESTINATION include
         FILES_MATCHING PATTERN "*.hpp" PATTERN "*.tpp" PATTERN "*.inl"
     )
-
-    message(STATUS "Building ${LIBRARY_NAME} as a header-only library.")
 else()
     # Collect all header files (.hpp, .tpp, and .inl) from include directory
     file(GLOB_RECURSE HEADER_FILES 
@@ -57,12 +55,12 @@ else()
         "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
     )
 
-    if (SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
+    if(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
         add_library(${LIBRARY_NAME} SHARED ${SOURCE_FILES})
 
         target_compile_definitions(${LIBRARY_NAME} 
             PRIVATE SOFTLOQ_WHATWG_INFRA_EXPORTS
-            PUBLIC SOFTLOQ_WHATWG_INFRA_SHARED
+            INTERFACE SOFTLOQ_WHATWG_INFRA_SHARED
         )
 
         set_target_properties(${LIBRARY_NAME} PROPERTIES
@@ -107,7 +105,6 @@ else()
         NAMESPACE ${LIBRARY_NAME}::
         DESTINATION lib/cmake/${LIBRARY_NAME}
     )
-
 endif()
 
 # Add subdirectories for tests and examples
