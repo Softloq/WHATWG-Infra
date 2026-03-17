@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+include(${CMAKE_CURRENT_LIST_DIR}/../cmake/copy-shared-lib/command.cmake)
+
 # Add GoogleTest
 include(FetchContent)
 
@@ -25,11 +27,14 @@ file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_CURRENT_LIST_DIR}/Test-Units/*.cpp"
 )
 
-add_executable(unit_tests ${SOURCE_FILES}) # Define the test executable
+add_executable(Softloq-WHATWG-Infra-Unit-Tests ${SOURCE_FILES}) # Define the test executable
 
 # Link to gtest_main, which provides the main() function for the tests
-target_link_libraries(unit_tests PRIVATE gtest_main Softloq-WHATWG-Infra) 
+target_link_libraries(Softloq-WHATWG-Infra-Unit-Tests PRIVATE gtest_main Softloq-WHATWG-Infra)
+
+# Copy the shared library to the test executable directory if needed
+copy_softloq_whatwg_infra_shared_lib(Softloq-WHATWG-Infra-Unit-Tests)
 
 # Automatically discover tests in the executable and register them with CTest
 include(GoogleTest)
-gtest_discover_tests(unit_tests)
+gtest_discover_tests(Softloq-WHATWG-Infra-Unit-Tests)

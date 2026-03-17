@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
 # Options for building tests and examples
 option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTS "Build WHATWG Infra unit tests" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES "Build WHATWG Infra example programs" OFF)
@@ -86,7 +85,6 @@ install(EXPORT ${LIBRARY_NAME}Targets
 if (SOFTLOQ_WHATWG_INFRA_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
-
 if (SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
