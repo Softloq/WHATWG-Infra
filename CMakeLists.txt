@@ -11,75 +11,104 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTS "Build WHATWG Infra unit tests" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES "Build WHATWG Infra example programs" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS "Build WHATWG Infra shared libraries instead of static" OFF)
+option(SOFTLOQ_WHATWG_INFRA_HEADER_ONLY "Build WHATWG Infra as a header-only library" OFF)
 
 # Define the library name
 set(LIBRARY_NAME Softloq-WHATWG-Infra)
 
-# Collect all header files (.hpp, .tpp, and .inl) from include directory
-file(GLOB_RECURSE HEADER_FILES 
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/*.tpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/*.inl"
-)
-
-# Collect all source files (.cpp) from src directory
-file(GLOB_RECURSE SOURCE_FILES 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
-)
-
-if (SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
-    add_library(${LIBRARY_NAME} SHARED ${SOURCE_FILES} ${HEADER_FILES})
-
-    target_compile_definitions(${LIBRARY_NAME} 
-        PRIVATE SOFTLOQ_WHATWG_INFRA_EXPORTS
-        PUBLIC SOFTLOQ_WHATWG_INFRA_SHARED
+if (SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
+    # Collect all header files (.hpp, .tpp, and .inl) from inline directory
+    file(GLOB_RECURSE HEADER_FILES 
+        "${CMAKE_CURRENT_SOURCE_DIR}/inline/*.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inline/*.tpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/inline/*.inl"
     )
-else()
-    add_library(${LIBRARY_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
-endif()
 
-# Specify include directories
-target_include_directories(${LIBRARY_NAME}
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
+    add_library(${LIBRARY_NAME} INTERFACE)
 
-# Set compiler warnings
-if(MSVC)
-    target_compile_options(${LIBRARY_NAME} PRIVATE /W4)
-else()
-    target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -Wpedantic)
-endif()
-
-# Set visibility for shared libraries
-if(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
-    set_target_properties(${LIBRARY_NAME} PROPERTIES
-        CXX_VISIBILITY_PRESET hidden
-        VISIBILITY_INLINES_HIDDEN ON
+    target_include_directories(${LIBRARY_NAME}
+        INTERFACE
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inline>
+            $<INSTALL_INTERFACE:include>
     )
+
+    # Installation rules
+    install(TARGETS ${LIBRARY_NAME}
+        EXPORT ${LIBRARY_NAME}Targets
+        INCLUDES DESTINATION include
+    )
+
+    install(DIRECTORY inline/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.hpp" PATTERN "*.tpp" PATTERN "*.inl"
+    )
+
+    message(STATUS "Building ${LIBRARY_NAME} as a header-only library.")
+else()
+    # Collect all header files (.hpp, .tpp, and .inl) from include directory
+    file(GLOB_RECURSE HEADER_FILES 
+        "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/include/*.tpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/include/*.inl"
+    )
+
+    # Collect all source files (.cpp) from src directory
+    file(GLOB_RECURSE SOURCE_FILES 
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+    )
+
+    if (SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
+        add_library(${LIBRARY_NAME} SHARED ${SOURCE_FILES})
+
+        target_compile_definitions(${LIBRARY_NAME} 
+            PRIVATE SOFTLOQ_WHATWG_INFRA_EXPORTS
+            PUBLIC SOFTLOQ_WHATWG_INFRA_SHARED
+        )
+
+        set_target_properties(${LIBRARY_NAME} PROPERTIES
+            CXX_VISIBILITY_PRESET hidden
+            VISIBILITY_INLINES_HIDDEN ON
+        )
+    else()
+        add_library(${LIBRARY_NAME} STATIC ${SOURCE_FILES})
+    endif()
+
+    # Specify include directories
+    target_include_directories(${LIBRARY_NAME}
+        PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+    )
+
+    # Set compiler warnings
+    if(MSVC)
+        target_compile_options(${LIBRARY_NAME} PRIVATE /W4)
+    else()
+        target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+
+    # Installation rules
+    install(TARGETS ${LIBRARY_NAME}
+        EXPORT ${LIBRARY_NAME}Targets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+    )
+
+    install(DIRECTORY include/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.hpp" PATTERN "*.tpp" PATTERN "*.inl"
+    )
+
+    # Export targets
+    install(EXPORT ${LIBRARY_NAME}Targets
+        FILE ${LIBRARY_NAME}Targets.cmake
+        NAMESPACE ${LIBRARY_NAME}::
+        DESTINATION lib/cmake/${LIBRARY_NAME}
+    )
+
 endif()
-
-# Installation rules
-install(TARGETS ${LIBRARY_NAME}
-    EXPORT ${LIBRARY_NAME}Targets
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
-)
-
-install(DIRECTORY include/
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.hpp" PATTERN "*.tpp" PATTERN "*.inl"
-)
-
-# Export targets
-install(EXPORT ${LIBRARY_NAME}Targets
-    FILE ${LIBRARY_NAME}Targets.cmake
-    NAMESPACE ${LIBRARY_NAME}::
-    DESTINATION lib/cmake/${LIBRARY_NAME}
-)
 
 # Add subdirectories for tests and examples
 if (SOFTLOQ_WHATWG_INFRA_BUILD_TESTS)
