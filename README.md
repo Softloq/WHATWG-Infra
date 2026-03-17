@@ -1,3 +1,7 @@
+[![Apple-Tests](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Apple-Tests.yml/badge.svg)](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Apple-Tests.yml)
+[![Linux-Tests](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Linux-Tests.yml/badge.svg)](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Linux-Tests.yml)
+[![Windows-Tests](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Windows-Tests.yml/badge.svg)](https://github.com/Softloq/WHATWG-Infra/actions/workflows/Windows-Tests.yml)
+
 # Softloq-WHATWG-Infra
 
 A C++23 implementation of the [WHATWG Infra specification](https://infra.spec.whatwg.org/), providing strongly-typed primitive types.
