@@ -43,6 +43,7 @@ cmake --build .
 | `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` | `OFF` | Build unit tests |
 | `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` | `OFF` | Build example programs |
 | `SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS` | `OFF` | Build as shared library instead of static |
+| `SOFTLOQ_WHATWG_INFRA_HEADER_ONLY` | `OFF` | Use the header-only version from `inline/` instead of building the library |
 
 See [examples/README.md](examples/README.md) for instructions on building examples.
 
@@ -56,13 +57,30 @@ See [tests/README.md](tests/README.md) for instructions on running tests.
 
 ## Usage
 
-Include the convenience header to pull in all primitives:
+### Primitives
+
+#### Null
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/Null/Null.hpp>
+
+Softloq::WHATWG::Infra::Null null_value;
+```
+
+Supports `std::format` and `operator<<`:
+
+```cpp
+std::string s = std::format("{}", null_value); // "null"
+std::cout << null_value;                        // "null"
+```
+
+### Convenience Headers
+
+Include all primitives at once:
 
 ```cpp
 #include <Softloq/WHATWG/Infra/Primitives/All.hpp>
 ```
-
-Or include individual primitive headers as needed.
 
 ---
 
@@ -75,7 +93,14 @@ src/Softloq/WHATWG/Infra/       – Implementations (.cpp) of the translation un
 tests/                          – Unit tests
 examples/                       – Example programs
 docs/                           – HTML Documentation
+roadmap/                        – Development roadmap
 ```
+
+---
+
+## Roadmap
+
+See [roadmap/README.md](roadmap/README.md) for the development roadmap.
 
 ---
 
