@@ -9,8 +9,7 @@ else()
 endif()
 
 function(copy_softloq_whatwg_infra_shared_lib TARGET_NAME)
-    if (SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS)
-        message("Copying shared library for target ${TARGET_NAME} since SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS is ON")
+    if (SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS AND NOT SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
         add_custom_command(
             TARGET ${TARGET_NAME} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:Softloq-WHATWG-Infra>/Softloq-WHATWG-Infra${LIB_EXTENSION}" "$<TARGET_FILE_DIR:${TARGET_NAME}>/Softloq-WHATWG-Infra${LIB_EXTENSION}"
