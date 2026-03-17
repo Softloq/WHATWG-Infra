@@ -28,7 +28,7 @@ class Primitive
 // Constructors and destructor
 public:
     SOFTLOQ_WHATWG_INFRA_API Primitive() noexcept;
-    SOFTLOQ_WHATWG_INFRA_API virtual ~Primitive() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API virtual ~Primitive() noexcept = 0;
 
 public:
     /**

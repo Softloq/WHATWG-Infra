@@ -10,7 +10,6 @@ elseif(APPLE)
 else()
     set(LIB_EXTENSION ".so")
 endif()
-
 function(copy_softloq_whatwg_infra_shared_lib TARGET_NAME)
     if(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS AND NOT SOFTLOQ_WHATWG_INFRA_HEADER_ONLY)
         add_custom_command(

@@ -60,7 +60,7 @@ else()
 
         target_compile_definitions(${LIBRARY_NAME} 
             PRIVATE SOFTLOQ_WHATWG_INFRA_EXPORTS
-            INTERFACE SOFTLOQ_WHATWG_INFRA_SHARED
+            PUBLIC SOFTLOQ_WHATWG_INFRA_SHARED
         )
 
         set_target_properties(${LIBRARY_NAME} PROPERTIES
