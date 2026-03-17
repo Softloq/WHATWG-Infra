@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A C++23 implementation of the [WHATWG Infra specification](https://infra.spec.whatwg.org/), providing strongly-typed primitive types. Library name: `Softloq-WHATWG-Infra`.
 
+See [roadmap/README.md](roadmap/README.md) for the development roadmap.
+
 ## Build
 
 Bash
@@ -26,6 +28,7 @@ Build options (to be re-added to CMakeLists.txt as primitives are implemented):
 - `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` – build unit tests (default OFF)
 - `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` – build examples (default OFF)
 - `SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS` – shared vs. static (default OFF)
+- `SOFTLOQ_WHATWG_INFRA_HEADER_ONLY` – use the header-only version from `inline/` instead of building the library (default OFF)
 
 ## Architecture
 
