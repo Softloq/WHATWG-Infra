@@ -35,7 +35,7 @@ public:
      * 
      * @return The type of the primitive.
      */
-    constexpr virtual [[nodiscard]] PrimitiveType get_type() const noexcept = 0;
+    [[nodiscard]] constexpr virtual PrimitiveType get_type() const noexcept = 0;
 };
 
 } // namespace Softloq::WHATWG::Infra

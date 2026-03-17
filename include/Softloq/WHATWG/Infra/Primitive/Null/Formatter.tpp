@@ -21,13 +21,11 @@
  * When formatted, the Null primitive will be represented as the string "null".
  */
 template <>
-struct std::formatter<Softloq::WHATWG::Infra::Null>
+struct std::formatter<Softloq::WHATWG::Infra::Null> : std::formatter<std::string>
 {
-    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
-
-    inline auto format(Softloq::WHATWG::Infra::Null, std::format_context& ctx) const
+    inline auto format(const Softloq::WHATWG::Infra::Null&, format_context& ctx) const
     {
-        return std::format_to(ctx.out(), "null");
+        return formatter<std::string>::format("null", ctx);
     }
 };
 

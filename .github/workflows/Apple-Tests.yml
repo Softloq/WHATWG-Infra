@@ -1,0 +1,60 @@
+name: Apple-Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Apple
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure (Shared Library)
+        shell: bash
+        run: |
+          mkdir build-shared
+          cd build-shared
+          cmake .. \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=ON \
+            -DSOFTLOQ_WHATWG_INFRA_HEADER_ONLY=OFF
+
+      - name: Build (Shared Library)
+        shell: bash
+        run: |
+          cd build-shared
+          cmake --build . --config Release
+
+      - name: Test (Shared Library)
+        shell: bash
+        run: |
+          cd build-shared
+          ctest --build-config Release --output-on-failure --test-dir tests
+
+      - name: Configure (Header-Only)
+        shell: bash
+        run: |
+          mkdir build-header-only
+          cd build-header-only
+          cmake .. \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_TESTS=ON \
+            -DSOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS=OFF \
+            -DSOFTLOQ_WHATWG_INFRA_HEADER_ONLY=ON
+
+      - name: Build (Header-Only)
+        shell: bash
+        run: |
+          cd build-header-only
+          cmake --build . --config Release
+
+      - name: Test (Header-Only)
+        shell: bash
+        run: |
+          cd build-header-only
+          ctest --build-config Release --output-on-failure --test-dir tests

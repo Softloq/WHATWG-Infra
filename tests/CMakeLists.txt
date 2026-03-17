@@ -28,6 +28,7 @@ file(GLOB_RECURSE SOURCE_FILES
 )
 
 add_executable(Softloq-WHATWG-Infra-Unit-Tests ${SOURCE_FILES}) # Define the test executable
+add_dependencies(Softloq-WHATWG-Infra-Unit-Tests Softloq-WHATWG-Infra) # Ensure the library is built before the tests
 
 # Link to gtest_main, which provides the main() function for the tests
 target_link_libraries(Softloq-WHATWG-Infra-Unit-Tests PRIVATE gtest_main Softloq-WHATWG-Infra)
