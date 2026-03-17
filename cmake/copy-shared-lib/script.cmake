@@ -1,0 +1,11 @@
+if (WIN32)
+    set(LIB_EXTENSION ".dll")
+elseif(APPLE)
+    set(LIB_EXTENSION ".dylib")
+else()
+    set(LIB_EXTENSION ".so")
+endif()
+
+if (EXISTS "${TARGET_FILE_DIR}/Softloq-WHATWG-Infra${LIB_EXTENSION}")
+    file(REMOVE "${TARGET_FILE_DIR}/Softloq-WHATWG-Infra${LIB_EXTENSION}")
+endif()

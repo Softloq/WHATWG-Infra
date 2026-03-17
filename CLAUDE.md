@@ -23,8 +23,8 @@ cmake --build .
 ```
 
 Build options (to be re-added to CMakeLists.txt as primitives are implemented):
-- `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` – build unit tests (default ON)
-- `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` – build examples (default ON)
+- `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` – build unit tests (default OFF)
+- `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` – build examples (default OFF)
 - `SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS` – shared vs. static (default OFF)
 
 ## Architecture

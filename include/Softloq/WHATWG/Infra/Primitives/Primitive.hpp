@@ -27,8 +27,8 @@ class Primitive
 {
 // Constructors and destructor
 public:
-    SOFTLOQ_WHATWG_INFRA_API Primitive();
-    SOFTLOQ_WHATWG_INFRA_API virtual ~Primitive();
+    SOFTLOQ_WHATWG_INFRA_API Primitive() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API virtual ~Primitive() noexcept;
 
 public:
     /**
@@ -36,7 +36,7 @@ public:
      * 
      * @return The type of the primitive.
      */
-    SOFTLOQ_WHATWG_INFRA_API virtual PrimitiveType get_type() const = 0;
+    SOFTLOQ_WHATWG_INFRA_API virtual [[nodiscard]] PrimitiveType get_type() const noexcept = 0;
 };
 
 } // namespace Softloq::WHATWG::Infra

@@ -40,8 +40,8 @@ cmake --build .
 
 | Option | Default | Description |
 |---|---|---|
-| `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` | `ON` | Build unit tests |
-| `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` | `ON` | Build example programs |
+| `SOFTLOQ_WHATWG_INFRA_BUILD_TESTS` | `OFF` | Build unit tests |
+| `SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES` | `OFF` | Build example programs |
 | `SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS` | `OFF` | Build as shared library instead of static |
 
 See [examples/README.md](examples/README.md) for instructions on building examples.
