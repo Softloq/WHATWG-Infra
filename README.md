@@ -57,13 +57,30 @@ See [tests/README.md](tests/README.md) for instructions on running tests.
 
 ## Usage
 
-Include the convenience header to pull in all primitives:
+### Primitives
+
+#### Null
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/Null/Null.hpp>
+
+Softloq::WHATWG::Infra::Null null_value;
+```
+
+Supports `std::format` and `operator<<`:
+
+```cpp
+std::string s = std::format("{}", null_value); // "null"
+std::cout << null_value;                        // "null"
+```
+
+### Convenience Headers
+
+Include all primitives at once:
 
 ```cpp
 #include <Softloq/WHATWG/Infra/Primitives/All.hpp>
 ```
-
-Or include individual primitive headers as needed.
 
 ---
 

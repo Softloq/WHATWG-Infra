@@ -8,6 +8,8 @@ A C++23 implementation of the [WHATWG Infra specification](https://infra.spec.wh
 
 See [roadmap/README.md](roadmap/README.md) for the development roadmap.
 
+**Rule:** When primitives or data structures are added to `include/`, update the Usage section of [README.md](README.md) to show direct usage of those types first (e.g. including and constructing individual primitive or data structure headers), then list convenience features such as `Primitives/All.hpp` at the end.
+
 ## Build
 
 Bash
