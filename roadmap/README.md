@@ -11,7 +11,7 @@ Each primitive requires both an implementation and test case coverage.
 | Primitive | Skeleton | Test Cases | Implementation | Pass Tests |
 |-----------|:--------:|:----------:|:--------------:|:----------:|
 | Null | ✅ | ✅ | ✅ | ✅ |
-| Boolean | ✅ | ✅ | ☐ | ☐ |
+| Boolean | ✅ | ✅ | ✅ | ☐ |
 | Byte | ☐ | ☐ | ☐ | ☐ |
 | Byte Sequence | ☐ | ☐ | ☐ | ☐ |
 | Code Point | ☐ | ☐ | ☐ | ☐ |

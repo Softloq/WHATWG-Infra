@@ -6,9 +6,6 @@
  * Copyright (c) 2026 Softloq. All rights reserved.
  * Softloq implementation of the WHATWG Infra library.
  * This implements the Boolean type for the WHATWG Infra library.
- *
- * NOTE: This is a skeleton implementation. All methods are stubs that do not yet
- * produce correct results. Tests are expected to fail at this stage.
  */
 
 #include <Softloq/WHATWG/Infra/API-Library/Precompiled.pch>
@@ -18,39 +15,47 @@ namespace Softloq::WHATWG::Infra
 {
 
 Boolean::Boolean() noexcept = default;
-Boolean::Boolean(bool) noexcept {}
+
+Boolean::Boolean(bool value) noexcept
+    : m_value{value}
+{
+}
+
 Boolean::~Boolean() noexcept = default;
 
 PrimitiveType Boolean::get_type() const noexcept
 {
-    return PrimitiveType::Invalid;
+    return PrimitiveType::Boolean;
 }
 
 bool Boolean::get_value() const noexcept
 {
-    return false;
+    return m_value;
 }
 
-void Boolean::set_value(bool) noexcept {}
+void Boolean::set_value(bool value) noexcept
+{
+    m_value = value;
+}
 
 Boolean::operator bool() const noexcept
 {
-    return false;
+    return m_value;
 }
 
 Boolean Boolean::operator!() const noexcept
 {
-    return Boolean{};
+    return Boolean{!m_value};
 }
 
-bool Boolean::operator==(const Boolean&) const noexcept
+bool Boolean::operator==(const Boolean& other) const noexcept
 {
-    return false;
+    return m_value == other.m_value;
 }
 
-bool Boolean::operator!=(const Boolean&) const noexcept
+bool Boolean::operator!=(const Boolean& other) const noexcept
 {
-    return false;
+    return m_value != other.m_value;
 }
 
 } // namespace Softloq::WHATWG::Infra
