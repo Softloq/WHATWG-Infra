@@ -46,7 +46,7 @@ public:
      */
     [[nodiscard]] constexpr PrimitiveType get_type() const noexcept override
     {
-        return PrimitiveType::Invalid;
+        return PrimitiveType::Byte;
     }
 
 // Accessors
@@ -68,6 +68,7 @@ public:
      */
     constexpr void set_value(std::uint8_t value) noexcept
     {
+        m_value = value;
     }
 
 // Conversion
@@ -79,7 +80,7 @@ public:
      */
     [[nodiscard]] constexpr explicit operator std::uint8_t() const noexcept
     {
-        return 0;
+        return m_value;
     }
 
 // Operators
@@ -92,7 +93,7 @@ public:
      */
     [[nodiscard]] constexpr bool operator==(const Byte& other) const noexcept
     {
-        return false;
+        return m_value == other.m_value;
     }
 
     /**
@@ -103,7 +104,7 @@ public:
      */
     [[nodiscard]] constexpr bool operator!=(const Byte& other) const noexcept
     {
-        return false;
+        return m_value != other.m_value;
     }
 
 private:

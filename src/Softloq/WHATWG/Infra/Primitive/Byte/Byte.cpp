@@ -25,7 +25,7 @@ Byte::~Byte() noexcept = default;
 
 PrimitiveType Byte::get_type() const noexcept
 {
-    return PrimitiveType::Invalid;
+    return PrimitiveType::Byte;
 }
 
 std::uint8_t Byte::get_value() const noexcept
@@ -35,21 +35,22 @@ std::uint8_t Byte::get_value() const noexcept
 
 void Byte::set_value(std::uint8_t value) noexcept
 {
+    m_value = value;
 }
 
 Byte::operator std::uint8_t() const noexcept
 {
-    return 0;
+    return m_value;
 }
 
 bool Byte::operator==(const Byte& other) const noexcept
 {
-    return false;
+    return m_value == other.m_value;
 }
 
 bool Byte::operator!=(const Byte& other) const noexcept
 {
-    return false;
+    return m_value != other.m_value;
 }
 
 } // namespace Softloq::WHATWG::Infra
