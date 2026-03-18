@@ -15,8 +15,7 @@ Softloq/WHATWG/Infra/
 │   │   └── Byte.cpp            - This implements the Byte type for the WHATWG Infra library, representing a byte value in the context of web APIs.
 │   ├── Number/
 │   │   └── Number.cpp          - This file provides explicit instantiations of the Number template for common integer types in the WHATWG Infra library.
-│   └── Null/
-│       └── Null.cpp            - This implements the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
-└── Primitives/
-    └── Primitive.cpp           - This implements the primitive abstract class for the WHATWG Infra library.
+│   ├── Null/
+│   │   └── Null.cpp            - This implements the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
+│   └── Primitive.cpp           - This implements the primitive abstract class for the WHATWG Infra library.
 ```

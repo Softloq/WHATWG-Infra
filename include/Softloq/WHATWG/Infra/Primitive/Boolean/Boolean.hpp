@@ -12,7 +12,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BOOLEAN_BOOLEAN_HPP
 
 #include "Softloq/WHATWG/Infra/API-Library/Macro.hpp"
-#include "Softloq/WHATWG/Infra/Primitives/Primitive.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Primitive.hpp"
 
 namespace Softloq::WHATWG::Infra
 {
