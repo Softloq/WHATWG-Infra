@@ -148,11 +148,12 @@ Explicit conversion to `std::uint8_t`:
 std::uint8_t val = static_cast<std::uint8_t>(byte_max); // 255
 ```
 
-Supports `std::format` and `operator<<` (always formats as a decimal integer, never as a character):
+Supports `std::format` and `operator<<` (always formats as `0x` followed by two uppercase hex digits):
 
 ```cpp
-std::string s = std::format("{}", Softloq::WHATWG::Infra::Byte{65}); // "65", not "A"
-std::cout << Softloq::WHATWG::Infra::Byte{255};                       // "255"
+std::string s = std::format("{}", Softloq::WHATWG::Infra::Byte{65});  // "0x41"
+std::cout << Softloq::WHATWG::Infra::Byte{255};                        // "0xFF"
+std::cout << Softloq::WHATWG::Infra::Byte{0};                          // "0x00"
 ```
 
 #### Number (Integer types)

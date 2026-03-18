@@ -21,12 +21,12 @@ Softloq/WHATWG/Infra/
 │   │   ├── Formatter.tpp       - Formatter specialization for the Number primitive type in the WHATWG Infra library.
 │   │   ├── Number.hpp          - This header defines the Number type for the WHATWG Infra library, representing integer numeric values in the context of web APIs.
 │   │   └── OStream.inl         - This file defines the output stream operator for the Number primitive type in the WHATWG Infra library.
-│   └── Null/
-│       ├── Formatter.tpp       - Formatter specialization for the Null primitive type in the WHATWG Infra library.
-│       ├── Null.hpp            - This header defines the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
-│       └── OStream.inl         - This file defines the output stream operator for the Null primitive type in the WHATWG Infra library.
+│   ├── Null/
+│   │   ├── Formatter.tpp       - Formatter specialization for the Null primitive type in the WHATWG Infra library.
+│   │   ├── Null.hpp            - This header defines the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
+│   │   └── OStream.inl         - This file defines the output stream operator for the Null primitive type in the WHATWG Infra library.
+│   ├── Primitive.hpp           - This header defines the primitive abstract class for the WHATWG Infra library.
+│   └── PrimitiveType.hpp       - This header defines the primitive types for the WHATWG Infra library.
 └── Primitives/
-    ├── All.hpp                 - This header includes all primitive type headers for convenience.
-    ├── Primitive.hpp           - This header defines the primitive abstract class for the WHATWG Infra library.
-    └── Type.hpp                - This header defines the primitive types for the WHATWG Infra library.
+    └── All.hpp                 - This header includes all primitive type headers for convenience.
 ```

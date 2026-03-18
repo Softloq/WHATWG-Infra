@@ -11,7 +11,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
 
-#include "Softloq/WHATWG/Infra/Primitives/Primitive.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Primitive.hpp"
 #include <concepts>
 #include <cstdint>
 

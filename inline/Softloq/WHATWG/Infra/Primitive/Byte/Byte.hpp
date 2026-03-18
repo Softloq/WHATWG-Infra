@@ -11,7 +11,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_BYTE_HPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_BYTE_HPP
 
-#include "Softloq/WHATWG/Infra/Primitives/Primitive.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Primitive.hpp"
 #include <cstdint>
 
 namespace Softloq::WHATWG::Infra
