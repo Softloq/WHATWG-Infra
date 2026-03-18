@@ -11,6 +11,8 @@ Softloq/WHATWG/Infra/
 ├── Primitive/
 │   ├── Boolean/
 │   │   └── Boolean.cpp         - This implements the Boolean type for the WHATWG Infra library, representing a boolean value in the context of web APIs.
+│   ├── Number/
+│   │   └── Number.cpp          - This file provides explicit instantiations of the Number template for common integer types in the WHATWG Infra library.
 │   └── Null/
 │       └── Null.cpp            - This implements the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
 └── Primitives/
