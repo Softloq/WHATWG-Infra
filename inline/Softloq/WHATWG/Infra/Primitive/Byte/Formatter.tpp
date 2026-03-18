@@ -13,7 +13,6 @@
 
 #include "Softloq/WHATWG/Infra/Primitive/Byte/Byte.hpp"
 #include <format>
-#include <string>
 
 /**
  * @brief Formatter specialization for the Byte primitive type.
@@ -29,7 +28,7 @@ struct std::formatter<Softloq::WHATWG::Infra::Byte>
 
     inline auto format(const Softloq::WHATWG::Infra::Byte& value, std::format_context& ctx) const
     {
-        return formatter<std::string>::format(std::to_string(value.get_value()), ctx);
+        return std::format_to(ctx.out(), "{}", static_cast<unsigned>(value.get_value()));
     }
 };
 
