@@ -23,7 +23,8 @@ namespace Softloq::WHATWG::Infra
 enum class PrimitiveType
 {
     Invalid, // Adds testability.
-    Null
+    Null,
+    Boolean
 };
 
 } // namespace Softloq::WHATWG::Infra

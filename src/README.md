@@ -9,6 +9,8 @@ This folder represents all of the C++ implementation files (.cpp) of the library
 ```
 Softloq/WHATWG/Infra/
 ├── Primitive/
+│   ├── Boolean/
+│   │   └── Boolean.cpp         - This implements the Boolean type for the WHATWG Infra library, representing a boolean value in the context of web APIs.
 │   └── Null/
 │       └── Null.cpp            - This implements the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
 └── Primitives/

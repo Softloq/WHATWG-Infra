@@ -12,5 +12,6 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVES_ALL_HPP
 
 #include "Softloq/WHATWG/Infra/Primitive/Null/Null.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Boolean/Boolean.hpp"
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVES_ALL_HPP

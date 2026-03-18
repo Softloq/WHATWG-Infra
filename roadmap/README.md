@@ -8,15 +8,15 @@ This document tracks the development progression of the library, following the [
 
 Each primitive requires both an implementation and test case coverage.
 
-| Primitive | Implementation | Test Cases |
-|-----------|:--------------:|:----------:|
-| Null | ✅ | ✅ |
-| Boolean | ☐ | ☐ |
-| Byte | ☐ | ☐ |
-| Byte Sequence | ☐ | ☐ |
-| Code Point | ☐ | ☐ |
-| String | ☐ | ☐ |
-| Number (Integer types) | ☐ | ☐ |
+| Primitive | Skeleton | Test Cases | Implementation | Pass Tests |
+|-----------|:--------:|:----------:|:--------------:|:----------:|
+| Null | ✅ | ✅ | ✅ | ✅ |
+| Boolean | ✅ | ✅ | ✅ | ✅ |
+| Byte | ☐ | ☐ | ☐ | ☐ |
+| Byte Sequence | ☐ | ☐ | ☐ | ☐ |
+| Code Point | ☐ | ☐ | ☐ | ☐ |
+| String | ☐ | ☐ | ☐ | ☐ |
+| Number (Integer types) | ☐ | ☐ | ☐ | ☐ |
 
 ---
 
@@ -24,11 +24,11 @@ Each primitive requires both an implementation and test case coverage.
 
 Each data structure requires both an implementation and test case coverage.
 
-| Data Structure | Implementation | Test Cases |
-|----------------|:--------------:|:----------:|
-| List | ☐ | ☐ |
-| Stack | ☐ | ☐ |
-| Queue | ☐ | ☐ |
-| Set | ☐ | ☐ |
-| Map | ☐ | ☐ |
-| Tuple | ☐ | ☐ |
+| Data Structure | Skeleton | Test Cases | Implementation | Pass Tests |
+|----------------|:--------:|:----------:|:--------------:|:----------:|
+| List | ☐ | ☐ | ☐ | ☐ |
+| Stack | ☐ | ☐ | ☐ | ☐ |
+| Queue | ☐ | ☐ | ☐ | ☐ |
+| Set | ☐ | ☐ | ☐ | ☐ |
+| Map | ☐ | ☐ | ☐ | ☐ |
+| Tuple | ☐ | ☐ | ☐ | ☐ |
