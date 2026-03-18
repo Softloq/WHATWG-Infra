@@ -78,6 +78,44 @@ std::string s = std::format("{}", null_value); // "null"
 std::cout << null_value;                        // "null"
 ```
 
+#### Boolean
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/Boolean/Boolean.hpp>
+
+Softloq::WHATWG::Infra::Boolean bool_value;        // false
+Softloq::WHATWG::Infra::Boolean bool_true{true};   // true
+```
+
+Get and set the underlying value:
+
+```cpp
+bool raw = bool_value.get_value(); // false
+bool_value.set_value(true);
+bool raw2 = bool_value.get_value(); // true
+```
+
+Logical negation and equality:
+
+```cpp
+Softloq::WHATWG::Infra::Boolean negated = !bool_true; // false
+bool equal = (bool_true == bool_value);               // true (both now true)
+bool diff  = (bool_true != negated);                  // true
+```
+
+Explicit conversion to `bool`:
+
+```cpp
+if (static_cast<bool>(bool_true)) { /* ... */ }
+```
+
+Supports `std::format` and `operator<<`:
+
+```cpp
+std::string s = std::format("{}", bool_true); // "true"
+std::cout << bool_true;                        // "true"
+```
+
 ### Convenience Headers
 
 Include all primitives at once:
