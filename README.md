@@ -116,6 +116,72 @@ std::string s = std::format("{}", bool_true); // "true"
 std::cout << bool_true;                        // "true"
 ```
 
+#### Number (Integer types)
+
+Eight strongly-typed integer aliases are provided, each wrapping the corresponding `std::intN_t` / `std::uintN_t` type:
+
+| Alias | Underlying type |
+|-------|----------------|
+| `Int8` | `std::int8_t` |
+| `Int16` | `std::int16_t` |
+| `Int32` | `std::int32_t` |
+| `Int64` | `std::int64_t` |
+| `UInt8` | `std::uint8_t` |
+| `UInt16` | `std::uint16_t` |
+| `UInt32` | `std::uint32_t` |
+| `UInt64` | `std::uint64_t` |
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/Number/Number.hpp>
+
+Softloq::WHATWG::Infra::Int32  i{-42};   // signed 32-bit
+Softloq::WHATWG::Infra::UInt8  u{255};   // unsigned 8-bit
+Softloq::WHATWG::Infra::UInt64 big{1'000'000'000'000ULL};
+```
+
+Get and set the underlying value:
+
+```cpp
+std::int32_t raw = i.get_value(); // -42
+i.set_value(0);
+```
+
+Arithmetic, compound assignment, and increment/decrement:
+
+```cpp
+Softloq::WHATWG::Infra::Int32 a{10}, b{3};
+Softloq::WHATWG::Infra::Int32 sum  = a + b;  // 13
+Softloq::WHATWG::Infra::Int32 diff = a - b;  // 7
+Softloq::WHATWG::Infra::Int32 prod = a * b;  // 30
+Softloq::WHATWG::Infra::Int32 quot = a / b;  // 3
+Softloq::WHATWG::Infra::Int32 rem  = a % b;  // 1
+
+a += b;  // 13
+++a;     // 14
+a++;     // 14, then becomes 15
+```
+
+Ordering and equality comparisons:
+
+```cpp
+bool eq  = (a == b);  // false
+bool lt  = (b < a);   // true
+bool gte = (a >= b);  // true
+```
+
+Explicit conversion to the underlying type:
+
+```cpp
+std::int32_t val = static_cast<std::int32_t>(a);
+```
+
+Supports `std::format` and `operator<<` (byte-sized types always format as numbers, never as characters):
+
+```cpp
+std::string s = std::format("{}", Softloq::WHATWG::Infra::UInt8{65}); // "65", not "A"
+std::cout << Softloq::WHATWG::Infra::Int32{-7};                        // "-7"
+```
+
 ### Convenience Headers
 
 Include all primitives at once:

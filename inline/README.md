@@ -13,6 +13,10 @@ Softloq/WHATWG/Infra/
 │   │   ├── Boolean.hpp         - This header defines the Boolean type for the WHATWG Infra library, representing a boolean value in the context of web APIs.
 │   │   ├── Formatter.tpp       - Formatter specialization for the Boolean primitive type in the WHATWG Infra library.
 │   │   └── OStream.inl         - This file defines the output stream operator for the Boolean primitive type in the WHATWG Infra library.
+│   ├── Number/
+│   │   ├── Formatter.tpp       - Formatter specialization for the Number primitive type in the WHATWG Infra library.
+│   │   ├── Number.hpp          - This header defines the Number type for the WHATWG Infra library, representing integer numeric values in the context of web APIs.
+│   │   └── OStream.inl         - This file defines the output stream operator for the Number primitive type in the WHATWG Infra library.
 │   └── Null/
 │       ├── Formatter.tpp       - Formatter specialization for the Null primitive type in the WHATWG Infra library.
 │       ├── Null.hpp            - This header defines the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
