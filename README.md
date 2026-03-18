@@ -116,6 +116,45 @@ std::string s = std::format("{}", bool_true); // "true"
 std::cout << bool_true;                        // "true"
 ```
 
+#### Byte
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/Byte/Byte.hpp>
+
+Softloq::WHATWG::Infra::Byte byte_value;          // 0
+Softloq::WHATWG::Infra::Byte byte_max{uint8_t{255}};
+```
+
+Get and set the underlying value:
+
+```cpp
+std::uint8_t raw = byte_value.get_value(); // 0
+byte_value.set_value(std::uint8_t{128});
+std::uint8_t raw2 = byte_value.get_value(); // 128
+```
+
+Equality and inequality:
+
+```cpp
+Softloq::WHATWG::Infra::Byte a{std::uint8_t{10}};
+Softloq::WHATWG::Infra::Byte b{std::uint8_t{10}};
+bool equal = (a == b); // true
+bool diff  = (a != b); // false
+```
+
+Explicit conversion to `std::uint8_t`:
+
+```cpp
+std::uint8_t val = static_cast<std::uint8_t>(byte_max); // 255
+```
+
+Supports `std::format` and `operator<<` (always formats as a decimal integer, never as a character):
+
+```cpp
+std::string s = std::format("{}", Softloq::WHATWG::Infra::Byte{65}); // "65", not "A"
+std::cout << Softloq::WHATWG::Infra::Byte{255};                       // "255"
+```
+
 #### Number (Integer types)
 
 Eight strongly-typed integer aliases are provided, each wrapping the corresponding `std::intN_t` / `std::uintN_t` type:
