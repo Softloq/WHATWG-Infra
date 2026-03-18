@@ -12,7 +12,7 @@ Each primitive requires both an implementation and test case coverage.
 |-----------|:--------:|:----------:|:--------------:|:----------:|
 | Null | ✅ | ✅ | ✅ | ✅ |
 | Boolean | ✅ | ✅ | ✅ | ✅ |
-| Byte | ✅ | ☐ | ☐ | ☐ |
+| Byte | ✅ | ✅ | ☐ | ☐ |
 | Byte Sequence | ☐ | ☐ | ☐ | ☐ |
 | Code Point | ☐ | ☐ | ☐ | ☐ |
 | String | ☐ | ☐ | ☐ | ☐ |
