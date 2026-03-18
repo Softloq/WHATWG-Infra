@@ -25,6 +25,7 @@ enum class PrimitiveType
     Invalid, // Adds testability.
     Null,
     Boolean,
+    Byte,
     Number
 };
 

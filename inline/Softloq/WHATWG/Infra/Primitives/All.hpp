@@ -13,6 +13,7 @@
 
 #include "Softloq/WHATWG/Infra/Primitive/Null/Null.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Boolean/Boolean.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Byte/Byte.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVES_ALL_HPP
