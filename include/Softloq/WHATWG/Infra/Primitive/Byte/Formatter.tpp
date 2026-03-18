@@ -20,14 +20,16 @@
  *
  * This formatter specialization allows the Byte primitive type to be formatted
  * as a string using std::format. When formatted, the Byte primitive will be
- * represented as a decimal integer in the range [0, 255].
+ * represented as a hexadecimal integer prefixed with "0x" and zero-padded to
+ * two uppercase hex digits (e.g., 0x00, 0x0F, 0xFF).
  */
 template <>
 struct std::formatter<Softloq::WHATWG::Infra::Byte> : std::formatter<std::string>
 {
     inline auto format(const Softloq::WHATWG::Infra::Byte& value, format_context& ctx) const
     {
-        return formatter<std::string>::format(std::to_string(value.get_value()), ctx);
+        return formatter<std::string>::format(
+            std::format("0x{:02X}", static_cast<unsigned>(value.get_value())), ctx);
     }
 };
 

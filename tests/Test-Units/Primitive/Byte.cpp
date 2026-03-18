@@ -322,39 +322,39 @@ TEST(BytePrimitiveTest, InequalityBoundaryValues)
 // ---------------------------------------------------------------------------
 
 /**
- * @brief Test that a Byte with value 0 formats as "0".
+ * @brief Test that a Byte with value 0 formats as "0x00".
  */
 TEST(BytePrimitiveTest, Formatting_Zero)
 {
     Byte b{std::uint8_t{0}};
-    EXPECT_EQ(std::format("{}", b), "0");
+    EXPECT_EQ(std::format("{}", b), "0x00");
 }
 
 /**
- * @brief Test that a Byte with value 255 formats as "255".
+ * @brief Test that a Byte with value 255 formats as "0xFF".
  */
 TEST(BytePrimitiveTest, Formatting_Max)
 {
     Byte b{std::uint8_t{255}};
-    EXPECT_EQ(std::format("{}", b), "255");
+    EXPECT_EQ(std::format("{}", b), "0xFF");
 }
 
 /**
- * @brief Test that a Byte with value 65 formats as "65" (not "A").
+ * @brief Test that a Byte with value 65 formats as "0x41" (not "A" or "65").
  */
 TEST(BytePrimitiveTest, Formatting_NotChar)
 {
     Byte b{std::uint8_t{65}};
-    EXPECT_EQ(std::format("{}", b), "65");
+    EXPECT_EQ(std::format("{}", b), "0x41");
 }
 
 /**
- * @brief Test that a Byte with a mid-range value formats as its decimal representation.
+ * @brief Test that a Byte with a mid-range value formats as its uppercase hex representation.
  */
 TEST(BytePrimitiveTest, Formatting_MidRange)
 {
     Byte b{std::uint8_t{127}};
-    EXPECT_EQ(std::format("{}", b), "127");
+    EXPECT_EQ(std::format("{}", b), "0x7F");
 }
 
 /**
@@ -364,9 +364,9 @@ TEST(BytePrimitiveTest, Formatting_AfterSetValue)
 {
     Byte b;
     b.set_value(std::uint8_t{42});
-    EXPECT_EQ(std::format("{}", b), "42");
+    EXPECT_EQ(std::format("{}", b), "0x2A");
     b.set_value(std::uint8_t{200});
-    EXPECT_EQ(std::format("{}", b), "200");
+    EXPECT_EQ(std::format("{}", b), "0xC8");
 }
 
 // ---------------------------------------------------------------------------
@@ -374,36 +374,36 @@ TEST(BytePrimitiveTest, Formatting_AfterSetValue)
 // ---------------------------------------------------------------------------
 
 /**
- * @brief Test that a Byte with value 0 streams as "0".
+ * @brief Test that a Byte with value 0 streams as "0x00".
  */
 TEST(BytePrimitiveTest, OutputStream_Zero)
 {
     Byte b{std::uint8_t{0}};
     std::ostringstream oss;
     oss << b;
-    EXPECT_EQ(oss.str(), "0");
+    EXPECT_EQ(oss.str(), "0x00");
 }
 
 /**
- * @brief Test that a Byte with value 255 streams as "255".
+ * @brief Test that a Byte with value 255 streams as "0xFF".
  */
 TEST(BytePrimitiveTest, OutputStream_Max)
 {
     Byte b{std::uint8_t{255}};
     std::ostringstream oss;
     oss << b;
-    EXPECT_EQ(oss.str(), "255");
+    EXPECT_EQ(oss.str(), "0xFF");
 }
 
 /**
- * @brief Test that a Byte with value 65 streams as "65" (not "A").
+ * @brief Test that a Byte with value 65 streams as "0x41" (not "A" or "65").
  */
 TEST(BytePrimitiveTest, OutputStream_NotChar)
 {
     Byte b{std::uint8_t{65}};
     std::ostringstream oss;
     oss << b;
-    EXPECT_EQ(oss.str(), "65");
+    EXPECT_EQ(oss.str(), "0x41");
 }
 
 /**
@@ -415,5 +415,5 @@ TEST(BytePrimitiveTest, OutputStream_AfterSetValue)
     b.set_value(std::uint8_t{99});
     std::ostringstream oss;
     oss << b;
-    EXPECT_EQ(oss.str(), "99");
+    EXPECT_EQ(oss.str(), "0x63");
 }
