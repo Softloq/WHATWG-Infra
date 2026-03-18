@@ -6,9 +6,6 @@
  * Copyright (c) 2026 Softloq. All rights reserved.
  * Softloq implementation of the WHATWG Infra library.
  * This header defines the Number type for the WHATWG Infra library.
- *
- * NOTE: This is a skeleton implementation. All methods are stubs that do not yet
- * produce correct results. Tests are expected to fail at this stage.
  */
 
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
@@ -37,7 +34,12 @@ class Number final : public Primitive
 // Constructors and destructor
 public:
     constexpr Number() noexcept = default;
-    constexpr explicit Number(T) noexcept {}
+
+    constexpr explicit Number(T value) noexcept
+        : m_value{value}
+    {
+    }
+
     constexpr ~Number() noexcept = default;
 
 // Primitive interface
@@ -49,7 +51,7 @@ public:
      */
     [[nodiscard]] constexpr PrimitiveType get_type() const noexcept override
     {
-        return PrimitiveType::Invalid;
+        return PrimitiveType::Number;
     }
 
 // Accessors
@@ -61,7 +63,7 @@ public:
      */
     [[nodiscard]] constexpr T get_value() const noexcept
     {
-        return T{};
+        return m_value;
     }
 
     /**
@@ -69,7 +71,10 @@ public:
      *
      * @param value The new integer value to store.
      */
-    constexpr void set_value(T) noexcept {}
+    constexpr void set_value(T value) noexcept
+    {
+        m_value = value;
+    }
 
 // Conversion
 public:
@@ -80,7 +85,7 @@ public:
      */
     [[nodiscard]] constexpr explicit operator T() const noexcept
     {
-        return T{};
+        return m_value;
     }
 
 // Arithmetic operators
@@ -91,9 +96,9 @@ public:
      * @param other The Number to add.
      * @return A new Number holding the sum.
      */
-    [[nodiscard]] constexpr Number operator+(const Number&) const noexcept
+    [[nodiscard]] constexpr Number operator+(const Number& other) const noexcept
     {
-        return Number{};
+        return Number{static_cast<T>(m_value + other.m_value)};
     }
 
     /**
@@ -102,9 +107,9 @@ public:
      * @param other The Number to subtract.
      * @return A new Number holding the difference.
      */
-    [[nodiscard]] constexpr Number operator-(const Number&) const noexcept
+    [[nodiscard]] constexpr Number operator-(const Number& other) const noexcept
     {
-        return Number{};
+        return Number{static_cast<T>(m_value - other.m_value)};
     }
 
     /**
@@ -113,9 +118,9 @@ public:
      * @param other The Number to multiply by.
      * @return A new Number holding the product.
      */
-    [[nodiscard]] constexpr Number operator*(const Number&) const noexcept
+    [[nodiscard]] constexpr Number operator*(const Number& other) const noexcept
     {
-        return Number{};
+        return Number{static_cast<T>(m_value * other.m_value)};
     }
 
     /**
@@ -124,9 +129,9 @@ public:
      * @param other The Number to divide by.
      * @return A new Number holding the quotient.
      */
-    [[nodiscard]] constexpr Number operator/(const Number&) const noexcept
+    [[nodiscard]] constexpr Number operator/(const Number& other) const noexcept
     {
-        return Number{};
+        return Number{static_cast<T>(m_value / other.m_value)};
     }
 
     /**
@@ -135,9 +140,9 @@ public:
      * @param other The Number to compute the remainder with.
      * @return A new Number holding the remainder.
      */
-    [[nodiscard]] constexpr Number operator%(const Number&) const noexcept
+    [[nodiscard]] constexpr Number operator%(const Number& other) const noexcept
     {
-        return Number{};
+        return Number{static_cast<T>(m_value % other.m_value)};
     }
 
 // Compound assignment operators
@@ -148,7 +153,11 @@ public:
      * @param other The Number to add.
      * @return Reference to this instance after addition.
      */
-    constexpr Number& operator+=(const Number&) noexcept { return *this; }
+    constexpr Number& operator+=(const Number& other) noexcept
+    {
+        m_value += other.m_value;
+        return *this;
+    }
 
     /**
      * @brief Subtraction assignment.
@@ -156,7 +165,11 @@ public:
      * @param other The Number to subtract.
      * @return Reference to this instance after subtraction.
      */
-    constexpr Number& operator-=(const Number&) noexcept { return *this; }
+    constexpr Number& operator-=(const Number& other) noexcept
+    {
+        m_value -= other.m_value;
+        return *this;
+    }
 
     /**
      * @brief Multiplication assignment.
@@ -164,7 +177,11 @@ public:
      * @param other The Number to multiply by.
      * @return Reference to this instance after multiplication.
      */
-    constexpr Number& operator*=(const Number&) noexcept { return *this; }
+    constexpr Number& operator*=(const Number& other) noexcept
+    {
+        m_value *= other.m_value;
+        return *this;
+    }
 
     /**
      * @brief Division assignment.
@@ -172,7 +189,11 @@ public:
      * @param other The Number to divide by.
      * @return Reference to this instance after division.
      */
-    constexpr Number& operator/=(const Number&) noexcept { return *this; }
+    constexpr Number& operator/=(const Number& other) noexcept
+    {
+        m_value /= other.m_value;
+        return *this;
+    }
 
     /**
      * @brief Modulo assignment.
@@ -180,7 +201,11 @@ public:
      * @param other The Number to compute the remainder with.
      * @return Reference to this instance after modulo.
      */
-    constexpr Number& operator%=(const Number&) noexcept { return *this; }
+    constexpr Number& operator%=(const Number& other) noexcept
+    {
+        m_value %= other.m_value;
+        return *this;
+    }
 
 // Increment and decrement operators
 public:
@@ -189,28 +214,46 @@ public:
      *
      * @return Reference to this instance after incrementing.
      */
-    constexpr Number& operator++() noexcept { return *this; }
+    constexpr Number& operator++() noexcept
+    {
+        ++m_value;
+        return *this;
+    }
 
     /**
      * @brief Postfix increment.
      *
      * @return A copy of this instance before incrementing.
      */
-    constexpr Number operator++(int) noexcept { return Number{}; }
+    constexpr Number operator++(int) noexcept
+    {
+        Number copy{m_value};
+        ++m_value;
+        return copy;
+    }
 
     /**
      * @brief Prefix decrement.
      *
      * @return Reference to this instance after decrementing.
      */
-    constexpr Number& operator--() noexcept { return *this; }
+    constexpr Number& operator--() noexcept
+    {
+        --m_value;
+        return *this;
+    }
 
     /**
      * @brief Postfix decrement.
      *
      * @return A copy of this instance before decrementing.
      */
-    constexpr Number operator--(int) noexcept { return Number{}; }
+    constexpr Number operator--(int) noexcept
+    {
+        Number copy{m_value};
+        --m_value;
+        return copy;
+    }
 
 // Comparison operators
 public:
@@ -220,7 +263,10 @@ public:
      * @param other The Number to compare against.
      * @return true if both instances hold the same value.
      */
-    [[nodiscard]] constexpr bool operator==(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator==(const Number& other) const noexcept
+    {
+        return m_value == other.m_value;
+    }
 
     /**
      * @brief Inequality comparison.
@@ -228,7 +274,10 @@ public:
      * @param other The Number to compare against.
      * @return true if the instances hold different values.
      */
-    [[nodiscard]] constexpr bool operator!=(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator!=(const Number& other) const noexcept
+    {
+        return m_value != other.m_value;
+    }
 
     /**
      * @brief Less-than comparison.
@@ -236,7 +285,10 @@ public:
      * @param other The Number to compare against.
      * @return true if this instance is less than other.
      */
-    [[nodiscard]] constexpr bool operator<(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator<(const Number& other) const noexcept
+    {
+        return m_value < other.m_value;
+    }
 
     /**
      * @brief Less-than-or-equal comparison.
@@ -244,7 +296,10 @@ public:
      * @param other The Number to compare against.
      * @return true if this instance is less than or equal to other.
      */
-    [[nodiscard]] constexpr bool operator<=(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator<=(const Number& other) const noexcept
+    {
+        return m_value <= other.m_value;
+    }
 
     /**
      * @brief Greater-than comparison.
@@ -252,7 +307,10 @@ public:
      * @param other The Number to compare against.
      * @return true if this instance is greater than other.
      */
-    [[nodiscard]] constexpr bool operator>(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator>(const Number& other) const noexcept
+    {
+        return m_value > other.m_value;
+    }
 
     /**
      * @brief Greater-than-or-equal comparison.
@@ -260,7 +318,10 @@ public:
      * @param other The Number to compare against.
      * @return true if this instance is greater than or equal to other.
      */
-    [[nodiscard]] constexpr bool operator>=(const Number&) const noexcept { return false; }
+    [[nodiscard]] constexpr bool operator>=(const Number& other) const noexcept
+    {
+        return m_value >= other.m_value;
+    }
 
 private:
     T m_value{};

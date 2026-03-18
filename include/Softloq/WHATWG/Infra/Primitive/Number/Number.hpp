@@ -6,9 +6,6 @@
  * Copyright (c) 2026 Softloq. All rights reserved.
  * Softloq implementation of the WHATWG Infra library.
  * This header defines the Number type for the WHATWG Infra library.
- *
- * NOTE: This is a skeleton implementation. All methods are stubs that do not yet
- * produce correct results. Tests are expected to fail at this stage.
  */
 
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
@@ -244,89 +241,92 @@ private:
 };
 
 // ---------------------------------------------------------------------------
-// Stub implementations (skeleton — all methods return wrong/default values)
+// Implementations
 // ---------------------------------------------------------------------------
 
 template <std::integral T>
 Number<T>::Number() noexcept = default;
 
 template <std::integral T>
-Number<T>::Number(T) noexcept {}
+Number<T>::Number(T value) noexcept
+    : m_value{value}
+{
+}
 
 template <std::integral T>
 Number<T>::~Number() noexcept = default;
 
 template <std::integral T>
-PrimitiveType Number<T>::get_type() const noexcept { return PrimitiveType::Invalid; }
+PrimitiveType Number<T>::get_type() const noexcept { return PrimitiveType::Number; }
 
 template <std::integral T>
-T Number<T>::get_value() const noexcept { return T{}; }
+T Number<T>::get_value() const noexcept { return m_value; }
 
 template <std::integral T>
-void Number<T>::set_value(T) noexcept {}
+void Number<T>::set_value(T value) noexcept { m_value = value; }
 
 template <std::integral T>
-Number<T>::operator T() const noexcept { return T{}; }
+Number<T>::operator T() const noexcept { return m_value; }
 
 template <std::integral T>
-Number<T> Number<T>::operator+(const Number&) const noexcept { return Number{}; }
+Number<T> Number<T>::operator+(const Number& other) const noexcept { return Number{static_cast<T>(m_value + other.m_value)}; }
 
 template <std::integral T>
-Number<T> Number<T>::operator-(const Number&) const noexcept { return Number{}; }
+Number<T> Number<T>::operator-(const Number& other) const noexcept { return Number{static_cast<T>(m_value - other.m_value)}; }
 
 template <std::integral T>
-Number<T> Number<T>::operator*(const Number&) const noexcept { return Number{}; }
+Number<T> Number<T>::operator*(const Number& other) const noexcept { return Number{static_cast<T>(m_value * other.m_value)}; }
 
 template <std::integral T>
-Number<T> Number<T>::operator/(const Number&) const noexcept { return Number{}; }
+Number<T> Number<T>::operator/(const Number& other) const noexcept { return Number{static_cast<T>(m_value / other.m_value)}; }
 
 template <std::integral T>
-Number<T> Number<T>::operator%(const Number&) const noexcept { return Number{}; }
+Number<T> Number<T>::operator%(const Number& other) const noexcept { return Number{static_cast<T>(m_value % other.m_value)}; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator+=(const Number&) noexcept { return *this; }
+Number<T>& Number<T>::operator+=(const Number& other) noexcept { m_value += other.m_value; return *this; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator-=(const Number&) noexcept { return *this; }
+Number<T>& Number<T>::operator-=(const Number& other) noexcept { m_value -= other.m_value; return *this; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator*=(const Number&) noexcept { return *this; }
+Number<T>& Number<T>::operator*=(const Number& other) noexcept { m_value *= other.m_value; return *this; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator/=(const Number&) noexcept { return *this; }
+Number<T>& Number<T>::operator/=(const Number& other) noexcept { m_value /= other.m_value; return *this; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator%=(const Number&) noexcept { return *this; }
+Number<T>& Number<T>::operator%=(const Number& other) noexcept { m_value %= other.m_value; return *this; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator++() noexcept { return *this; }
+Number<T>& Number<T>::operator++() noexcept { ++m_value; return *this; }
 
 template <std::integral T>
-Number<T> Number<T>::operator++(int) noexcept { return Number{}; }
+Number<T> Number<T>::operator++(int) noexcept { Number copy{m_value}; ++m_value; return copy; }
 
 template <std::integral T>
-Number<T>& Number<T>::operator--() noexcept { return *this; }
+Number<T>& Number<T>::operator--() noexcept { --m_value; return *this; }
 
 template <std::integral T>
-Number<T> Number<T>::operator--(int) noexcept { return Number{}; }
+Number<T> Number<T>::operator--(int) noexcept { Number copy{m_value}; --m_value; return copy; }
 
 template <std::integral T>
-bool Number<T>::operator==(const Number&) const noexcept { return false; }
+bool Number<T>::operator==(const Number& other) const noexcept { return m_value == other.m_value; }
 
 template <std::integral T>
-bool Number<T>::operator!=(const Number&) const noexcept { return false; }
+bool Number<T>::operator!=(const Number& other) const noexcept { return m_value != other.m_value; }
 
 template <std::integral T>
-bool Number<T>::operator<(const Number&) const noexcept { return false; }
+bool Number<T>::operator<(const Number& other) const noexcept { return m_value < other.m_value; }
 
 template <std::integral T>
-bool Number<T>::operator<=(const Number&) const noexcept { return false; }
+bool Number<T>::operator<=(const Number& other) const noexcept { return m_value <= other.m_value; }
 
 template <std::integral T>
-bool Number<T>::operator>(const Number&) const noexcept { return false; }
+bool Number<T>::operator>(const Number& other) const noexcept { return m_value > other.m_value; }
 
 template <std::integral T>
-bool Number<T>::operator>=(const Number&) const noexcept { return false; }
+bool Number<T>::operator>=(const Number& other) const noexcept { return m_value >= other.m_value; }
 
 // ---------------------------------------------------------------------------
 // Extern declarations for pre-instantiated types (defined in the library)
