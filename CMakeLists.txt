@@ -72,6 +72,11 @@ else()
         add_library(${LIBRARY_NAME} STATIC ${SOURCE_FILES})
     endif()
 
+    target_precompile_headers(${LIBRARY_NAME}
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/include/Softloq/WHATWG/Infra/API-Library/Precompiled.pch"
+    )
+
     # Specify include directories
     target_include_directories(${LIBRARY_NAME}
         PUBLIC
