@@ -18,6 +18,9 @@
 namespace Softloq::WHATWG::Infra
 {
 
+/**
+ * @brief Concept for types that behave like integral types, supporting basic arithmetic and comparison operations.
+ */
 template <typename T>
 concept IntegralLike = requires(T a, T b) {
     { a + b }  -> std::convertible_to<T>;
@@ -29,6 +32,9 @@ concept IntegralLike = requires(T a, T b) {
     requires std::is_copy_constructible_v<T>;
 };
 
+/**
+ * @brief Concept for integral types, including both standard integral types and user-defined types that satisfy IntegralLike.
+ */
 template <typename T>
 concept Integral = std::integral<T> || IntegralLike<T>;
 
