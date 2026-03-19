@@ -9,7 +9,7 @@
  */
 
 #include <gtest/gtest.h>
-#include <Softloq/WHATWG/Infra/Primitives/All.hpp>
+#include <Softloq/WHATWG/Infra/Primitive/Numbers/Numbers.hpp>
 #include <limits>
 #include <sstream>
 

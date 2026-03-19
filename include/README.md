@@ -38,9 +38,9 @@ Softloq/WHATWG/Infra/
 │   ├── Null/
 │   │   └── Null.hpp            - This header defines the Null type for the WHATWG Infra library, representing a null value in the context of web APIs.
 │   ├── Numbers/
-│   │   └── All.hpp             - This header includes all number primitive type headers for convenience.
+│   │   └── Numbers.hpp         - This header includes all number primitive type headers for convenience.
 │   ├── Primitive.hpp           - This header defines the primitive abstract class for the WHATWG Infra library.
 │   └── PrimitiveType.hpp       - This header defines the primitive types for the WHATWG Infra library.
 └── Primitives/
-    └── All.hpp                 - This header includes all primitive type headers for convenience.
+    └── Primitives.hpp          - This header includes all primitive type headers for convenience.
 ```

@@ -227,7 +227,7 @@ std::cout << Softloq::WHATWG::Infra::Int32{-7};                        // "-7"
 Include all primitives at once:
 
 ```cpp
-#include <Softloq/WHATWG/Infra/Primitives/All.hpp>
+#include <Softloq/WHATWG/Infra/Primitives/Primitives.hpp>
 ```
 
 ---

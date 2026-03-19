@@ -1,15 +1,15 @@
 /**
- * @file Softloq/WHATWG/Infra/Primitives/Numbers/All.hpp
+ * @file Softloq/WHATWG/Infra/Primitive/Numbers/Numbers.hpp
  * @author Softloq CEO - Brandon Foster (Paradox Gene)
  * @brief This header includes all number primitive type headers for convenience.
- * 
+ *
  * Copyright (c) 2026 Softloq. All rights reserved.
  * Softloq implementation of the WHATWG Infra library.
  * This header includes all number primitive type headers for convenience.
  */
 
-#ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVES_NUMBERS_ALL_HPP
-#define SOFTLOQ_WHATWG_INFRA_PRIMITIVES_NUMBERS_ALL_HPP
+#ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBERS_NUMBERS_HPP
+#define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBERS_NUMBERS_HPP
 
 #include "Softloq/WHATWG/Infra/Primitive/Number/UInt8/UInt8.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Number/UInt16/UInt16.hpp"
@@ -21,4 +21,4 @@
 #include "Softloq/WHATWG/Infra/Primitive/Number/Int32/Int32.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Number/Int64/Int64.hpp"
 
-#endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVES_NUMBERS_ALL_HPP
+#endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBERS_NUMBERS_HPP
