@@ -12,7 +12,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_INT32_INT32_HPP
 
 #include "Softloq/WHATWG/Infra/API-Library/Macro.hpp"
-#include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Number/Int32/Int32.hpp"
 
 namespace Softloq::WHATWG::Infra
 {

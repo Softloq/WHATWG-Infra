@@ -11,7 +11,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT16_OSTREAM_INL
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT16_OSTREAM_INL
 
-#include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Number/UInt16/UInt16.hpp"
 #include <ostream>
 
 inline std::ostream& operator<<(std::ostream& os, const Softloq::WHATWG::Infra::Number<std::uint16_t>& value)

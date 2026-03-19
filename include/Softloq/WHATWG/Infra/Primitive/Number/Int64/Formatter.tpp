@@ -11,7 +11,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_INT64_FORMATTER_TPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_INT64_FORMATTER_TPP
 
-#include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Number/Int64/Int64.hpp"
 #include <format>
 
 /**
