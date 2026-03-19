@@ -16,13 +16,13 @@
 namespace Softloq::WHATWG::Infra
 {
 
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint8_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint16_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint32_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint64_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::int8_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::int16_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::int32_t>;
-template class SOFTLOQ_WHATWG_INFRA_API Number<std::int64_t>;
+template class Number<std::uint8_t>;
+template class Number<std::uint16_t>;
+template class Number<std::uint32_t>;
+template class Number<std::uint64_t>;
+template class Number<std::int8_t>;
+template class Number<std::int16_t>;
+template class Number<std::int32_t>;
+template class Number<std::int64_t>;
 
 } // namespace Softloq::WHATWG::Infra
