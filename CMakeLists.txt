@@ -12,6 +12,7 @@ option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTS "Build WHATWG Infra unit tests" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_EXAMPLES "Build WHATWG Infra example programs" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_SHARED_LIBS "Build WHATWG Infra shared libraries instead of static" OFF)
 option(SOFTLOQ_WHATWG_INFRA_HEADER_ONLY "Build WHATWG Infra as a header-only library" OFF)
+option(SOFTLOQ_WHATWG_INFRA_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 # Define the library name
 set(LIBRARY_NAME Softloq-WHATWG-Infra)
@@ -71,6 +72,11 @@ else()
         add_library(${LIBRARY_NAME} STATIC ${SOURCE_FILES})
     endif()
 
+    target_precompile_headers(${LIBRARY_NAME}
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/include/Softloq/WHATWG/Infra/API-Library/Precompiled.pch"
+    )
+
     # Specify include directories
     target_include_directories(${LIBRARY_NAME}
         PUBLIC
@@ -81,8 +87,14 @@ else()
     # Set compiler warnings
     if(MSVC)
         target_compile_options(${LIBRARY_NAME} PRIVATE /W4)
+        if(SOFTLOQ_WHATWG_INFRA_WARNINGS_AS_ERRORS)
+            target_compile_options(${LIBRARY_NAME} PRIVATE /WX)
+        endif()
     else()
         target_compile_options(${LIBRARY_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+        if(SOFTLOQ_WHATWG_INFRA_WARNINGS_AS_ERRORS)
+            target_compile_options(${LIBRARY_NAME} PRIVATE -Werror)
+        endif()
     endif()
 
     # Installation rules

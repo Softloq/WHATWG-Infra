@@ -10,7 +10,7 @@ See [roadmap/README.md](roadmap/README.md) for the development roadmap.
 
 When adding code, follow the contribution guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**Rule:** When primitives or data structures are added to `include/`, update the Usage section of [README.md](README.md) to show direct usage of those types first (e.g. including and constructing individual primitive or data structure headers), then list convenience features such as `Primitives/All.hpp` at the end.
+**Rule:** When primitives or data structures are added to `include/`, update the Usage section of [README.md](README.md) to show direct usage of those types first (e.g. including and constructing individual primitive or data structure headers), then list convenience features such as `Primitives/Primitives.hpp` at the end.
 
 ## Build
 
@@ -50,4 +50,4 @@ docs/                           – HTML Documentation
 ### Key Headers
 
 - [Softloq/WHATWG/Infra/API-Library/Macro.hpp](include/Softloq/WHATWG/Infra/API-Library/Macro.hpp) – This header defines the API export/import macro for building static or dynamic libraries.
-- [Softloq/WHATWG/Infra/Primitives/All.hpp](include/Softloq/WHATWG/Infra/Primitives/All.hpp) – This header includes all primitive type headers for convenience.
+- [Softloq/WHATWG/Infra/Primitives/Primitives.hpp](include/Softloq/WHATWG/Infra/Primitives/Primitives.hpp) – This header includes all primitive type headers for convenience.

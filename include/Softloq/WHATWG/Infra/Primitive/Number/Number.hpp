@@ -328,66 +328,6 @@ bool Number<T>::operator>(const Number& other) const noexcept { return m_value >
 template <std::integral T>
 bool Number<T>::operator>=(const Number& other) const noexcept { return m_value >= other.m_value; }
 
-// ---------------------------------------------------------------------------
-// Extern declarations for pre-instantiated types (defined in the library)
-// ---------------------------------------------------------------------------
-
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint8_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint16_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint32_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::uint64_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::int8_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::int16_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::int32_t>;
-extern template class SOFTLOQ_WHATWG_INFRA_API Number<std::int64_t>;
-
-// ---------------------------------------------------------------------------
-// Type aliases for common integer widths
-// ---------------------------------------------------------------------------
-
-/**
- * @brief Alias for an 8-bit unsigned integer Number.
- */
-using UInt8  = Number<std::uint8_t>;
-
-/**
- * @brief Alias for a 16-bit unsigned integer Number.
- */
-using UInt16 = Number<std::uint16_t>;
-
-/**
- * @brief Alias for a 32-bit unsigned integer Number.
- */
-using UInt32 = Number<std::uint32_t>;
-
-/**
- * @brief Alias for a 64-bit unsigned integer Number.
- */
-using UInt64 = Number<std::uint64_t>;
-
-/**
- * @brief Alias for an 8-bit signed integer Number.
- */
-using Int8   = Number<std::int8_t>;
-
-/**
- * @brief Alias for a 16-bit signed integer Number.
- */
-using Int16  = Number<std::int16_t>;
-
-/**
- * @brief Alias for a 32-bit signed integer Number.
- */
-using Int32  = Number<std::int32_t>;
-
-/**
- * @brief Alias for a 64-bit signed integer Number.
- */
-using Int64  = Number<std::int64_t>;
-
 } // namespace Softloq::WHATWG::Infra
-
-#include "Softloq/WHATWG/Infra/Primitive/Number/Formatter.tpp"
-#include "Softloq/WHATWG/Infra/Primitive/Number/OStream.inl"
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
