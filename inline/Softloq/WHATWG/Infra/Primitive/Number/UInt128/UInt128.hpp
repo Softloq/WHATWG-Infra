@@ -16,6 +16,9 @@
 namespace Softloq::WHATWG::Infra
 {
 
+/**
+ * @brief A struct representing a 128-bit unsigned integer, composed of two 64-bit parts: high and low.
+ */
 struct uint128_t final
 {
     std::uint64_t high{};

@@ -29,16 +29,27 @@ concept IntegralConcept =
     && requires(T a, T b)
     {
         { a + b }  -> std::same_as<T>;
+        { a += b } -> std::same_as<T&>;
+        { a - b }  -> std::same_as<T>;
+        { a -= b } -> std::same_as<T&>;
+        { a * b }  -> std::same_as<T>;
+        { a *= b } -> std::same_as<T&>;
+        { a / b }  -> std::same_as<T>;
+        { a /= b } -> std::same_as<T&>;
+        { a % b }  -> std::same_as<T>;
+        { a %= b } -> std::same_as<T&>;
+
         { ++a }    -> std::same_as<T&>;
         { a++ }    -> std::same_as<T>;
-        { a - b }  -> std::same_as<T>;
         { --a }    -> std::same_as<T&>;
         { a-- }    -> std::same_as<T>;
-        { a * b }  -> std::same_as<T>;
-        { a / b }  -> std::same_as<T>;
-        { ~a }     -> std::same_as<T>;
-        { a << 1 } -> std::same_as<T>;
-        { a >> 1 } -> std::same_as<T>;
+    }
+    && requires(T a, int n)
+    {
+        { a << n } -> std::same_as<T>;
+        { a <<= n } -> std::same_as<T&>;
+        { a >> n } -> std::same_as<T>;
+        { a >>= n } -> std::same_as<T&>;
     }
     && requires(std::ostream& os, T a)
     {
