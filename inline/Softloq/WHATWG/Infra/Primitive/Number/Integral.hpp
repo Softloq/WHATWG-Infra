@@ -13,7 +13,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_INTEGRAL_HPP
 
 #include <concepts>
-#include <cstdint>
+#include <ostream>
 
 namespace Softloq::WHATWG::Infra
 {
@@ -22,21 +22,34 @@ namespace Softloq::WHATWG::Infra
  * @brief Concept for types that behave like integral types, supporting basic arithmetic and comparison operations.
  */
 template <typename T>
-concept IntegralLike = requires(T a, T b) {
-    { a + b }  -> std::convertible_to<T>;
-    { a - b }  -> std::convertible_to<T>;
-    { ++a }    -> std::same_as<T&>;
-    { a == b } -> std::convertible_to<bool>;
-    { a < b }  -> std::convertible_to<bool>;
-    requires std::is_default_constructible_v<T>;
-    requires std::is_copy_constructible_v<T>;
-};
+concept IntegralConcept =
+    std::regular<T>
+    && std::swappable<T>
+    && std::totally_ordered<T>
+    && requires(T a, T b)
+    {
+        { a + b }  -> std::same_as<T>;
+        { ++a }    -> std::same_as<T&>;
+        { a++ }    -> std::same_as<T>;
+        { a - b }  -> std::same_as<T>;
+        { --a }    -> std::same_as<T&>;
+        { a-- }    -> std::same_as<T>;
+        { a * b }  -> std::same_as<T>;
+        { a / b }  -> std::same_as<T>;
+        { ~a }     -> std::same_as<T>;
+        { a << 1 } -> std::same_as<T>;
+        { a >> 1 } -> std::same_as<T>;
+    }
+    && requires(std::ostream& os, T a)
+    {
+        { os << a } -> std::same_as<std::ostream&>;
+    };
 
 /**
  * @brief Concept for integral types, including both standard integral types and user-defined types that satisfy IntegralLike.
  */
 template <typename T>
-concept Integral = std::integral<T> || IntegralLike<T>;
+concept Integral = std::integral<T> || IntegralConcept<T>;
 
 } // namespace Softloq::WHATWG::Infra
 
