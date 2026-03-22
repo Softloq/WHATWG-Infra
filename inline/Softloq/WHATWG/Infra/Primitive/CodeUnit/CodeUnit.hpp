@@ -117,87 +117,143 @@ public:
     /**
      * @brief Returns true if the code unit is a surrogate (0xD800 to 0xDFFF).
      */
-    [[nodiscard]] constexpr bool is_surrogate() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_surrogate() const noexcept
+    {
+        return m_value >= 0xD800 && m_value <= 0xDFFF;
+    }
 
     /**
      * @brief Returns true if the code unit is a leading surrogate (0xD800 to 0xDBFF).
      */
-    [[nodiscard]] constexpr bool is_leading_surrogate() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_leading_surrogate() const noexcept
+    {
+        return m_value >= 0xD800 && m_value <= 0xDBFF;
+    }
 
     /**
      * @brief Returns true if the code unit is a trailing surrogate (0xDC00 to 0xDFFF).
      */
-    [[nodiscard]] constexpr bool is_trailing_surrogate() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_trailing_surrogate() const noexcept
+    {
+        return m_value >= 0xDC00 && m_value <= 0xDFFF;
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII code unit (0x0000 to 0x007F).
      */
-    [[nodiscard]] constexpr bool is_ascii() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii() const noexcept
+    {
+        return m_value <= 0x007F;
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII tab or newline (0x0009, 0x000A, 0x000D).
      */
-    [[nodiscard]] constexpr bool is_ascii_tab_or_newline() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_tab_or_newline() const noexcept
+    {
+        return m_value == 0x0009 || m_value == 0x000A || m_value == 0x000D;
+    }
 
     /**
      * @brief Returns true if the code unit is ASCII whitespace (0x0009, 0x000A, 0x000C, 0x000D, 0x0020).
      */
-    [[nodiscard]] constexpr bool is_ascii_whitespace() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_whitespace() const noexcept
+    {
+        return m_value == 0x0009 || m_value == 0x000A
+            || m_value == 0x000C || m_value == 0x000D
+            || m_value == 0x0020;
+    }
 
     /**
      * @brief Returns true if the code unit is a C0 control (0x0000 to 0x001F).
      */
-    [[nodiscard]] constexpr bool is_c0_control() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_c0_control() const noexcept
+    {
+        return m_value <= 0x001F;
+    }
 
     /**
      * @brief Returns true if the code unit is a C0 control or 0x0020 SPACE.
      */
-    [[nodiscard]] constexpr bool is_c0_control_or_space() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_c0_control_or_space() const noexcept
+    {
+        return m_value <= 0x001F || m_value == 0x0020;
+    }
 
     /**
      * @brief Returns true if the code unit is a control (C0, 0x007F DEL, or 0x0080 to 0x009F).
      */
-    [[nodiscard]] constexpr bool is_control() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_control() const noexcept
+    {
+        return m_value <= 0x001F || m_value == 0x007F
+            || (m_value >= 0x0080 && m_value <= 0x009F);
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII digit (0x0030 to 0x0039).
      */
-    [[nodiscard]] constexpr bool is_ascii_digit() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_digit() const noexcept
+    {
+        return m_value >= 0x0030 && m_value <= 0x0039;
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII upper hex digit (0x0030..0x0039 or 0x0041..0x0046).
      */
-    [[nodiscard]] constexpr bool is_ascii_upper_hex_digit() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_upper_hex_digit() const noexcept
+    {
+        return is_ascii_digit()
+            || (m_value >= 0x0041 && m_value <= 0x0046);
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII lower hex digit (0x0030..0x0039 or 0x0061..0x0066).
      */
-    [[nodiscard]] constexpr bool is_ascii_lower_hex_digit() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_lower_hex_digit() const noexcept
+    {
+        return is_ascii_digit()
+            || (m_value >= 0x0061 && m_value <= 0x0066);
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII hex digit (upper or lower).
      */
-    [[nodiscard]] constexpr bool is_ascii_hex_digit() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_hex_digit() const noexcept
+    {
+        return is_ascii_upper_hex_digit() || is_ascii_lower_hex_digit();
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII upper alpha (0x0041 to 0x005A).
      */
-    [[nodiscard]] constexpr bool is_ascii_upper_alpha() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_upper_alpha() const noexcept
+    {
+        return m_value >= 0x0041 && m_value <= 0x005A;
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII lower alpha (0x0061 to 0x007A).
      */
-    [[nodiscard]] constexpr bool is_ascii_lower_alpha() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_lower_alpha() const noexcept
+    {
+        return m_value >= 0x0061 && m_value <= 0x007A;
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII alpha (upper or lower).
      */
-    [[nodiscard]] constexpr bool is_ascii_alpha() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_alpha() const noexcept
+    {
+        return is_ascii_upper_alpha() || is_ascii_lower_alpha();
+    }
 
     /**
      * @brief Returns true if the code unit is an ASCII alphanumeric (digit or alpha).
      */
-    [[nodiscard]] constexpr bool is_ascii_alphanumeric() const noexcept { return false; }
+    [[nodiscard]] constexpr bool is_ascii_alphanumeric() const noexcept
+    {
+        return is_ascii_digit() || is_ascii_alpha();
+    }
 
 private:
     std::uint16_t m_value{0};

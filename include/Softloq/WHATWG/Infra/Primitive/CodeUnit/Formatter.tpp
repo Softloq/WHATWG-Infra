@@ -28,7 +28,8 @@ struct std::formatter<Softloq::WHATWG::Infra::CodeUnit> : std::formatter<std::st
 {
     inline auto format(const Softloq::WHATWG::Infra::CodeUnit& value, format_context& ctx) const
     {
-        return formatter<std::string>::format(std::string{}, ctx);
+        return formatter<std::string>::format(
+            std::format("0x{:04X}", static_cast<unsigned>(value.get_value())), ctx);
     }
 };
 
