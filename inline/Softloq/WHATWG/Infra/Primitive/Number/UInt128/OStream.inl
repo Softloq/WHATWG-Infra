@@ -14,7 +14,7 @@
 #include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/UInt128.hpp"
 #include <ostream>
 
-inline std::ostream& operator<<(std::ostream& os, const Softloq::WHATWG::Infra::Number<Softloq::WHATWG::Infra::Number::uint128_t>& value)
+inline std::ostream& operator<<(std::ostream& os, const Softloq::WHATWG::Infra::Number<Softloq::WHATWG::Infra::uint128_t>& value)
 {
     return os << value.get_value();
 }

@@ -12,18 +12,12 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT128_UINT128_HPP
 
 #include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/uint128_t.hpp"
 
 namespace Softloq::WHATWG::Infra
 {
 
-/**
- * @brief A struct representing a 128-bit unsigned integer, composed of two 64-bit parts: high and low.
- */
-struct uint128_t final
-{
-    std::uint64_t high{};
-    std::uint64_t low{};
-};
+static_assert(IntegralConcept<uint128_t>, "uint128_t must be an integral type"); // Passes
 
 /**
  * @brief Alias for a 128-bit unsigned integer Number.
@@ -32,7 +26,7 @@ using UInt128 = Number<uint128_t>;
 
 } // namespace Softloq::WHATWG::Infra
 
-#include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/Formatter.tpp"
+// #include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/Formatter.tpp"
 #include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/OStream.inl"
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT128_UINT128_HPP

@@ -56,7 +56,6 @@ concept IntegralConcept =
         { os << a } -> std::same_as<std::ostream&>;
     };
 
-
 /**
  * @brief Concept for integral types, including both standard integral types and user-defined types that satisfy IntegralLike.
  */
