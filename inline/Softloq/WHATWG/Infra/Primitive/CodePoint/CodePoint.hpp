@@ -114,7 +114,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_surrogate() const noexcept
     {
-        return false;
+        return m_value >= 0xD800 && m_value <= 0xDFFF;
     }
 
     /**
@@ -122,7 +122,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_leading_surrogate() const noexcept
     {
-        return false;
+        return m_value >= 0xD800 && m_value <= 0xDBFF;
     }
 
     /**
@@ -130,7 +130,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_trailing_surrogate() const noexcept
     {
-        return false;
+        return m_value >= 0xDC00 && m_value <= 0xDFFF;
     }
 
     /**
@@ -138,7 +138,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_scalar_value() const noexcept
     {
-        return false;
+        return !is_surrogate();
     }
 
     /**
@@ -149,7 +149,8 @@ public:
      */
     [[nodiscard]] constexpr bool is_noncharacter() const noexcept
     {
-        return false;
+        if (m_value >= 0xFDD0 && m_value <= 0xFDEF) return true;
+        return (m_value & 0xFFFF) >= 0xFFFE;
     }
 
     /**
@@ -157,7 +158,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii() const noexcept
     {
-        return false;
+        return m_value <= 0x007F;
     }
 
     /**
@@ -165,7 +166,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_tab_or_newline() const noexcept
     {
-        return false;
+        return m_value == 0x0009 || m_value == 0x000A || m_value == 0x000D;
     }
 
     /**
@@ -173,7 +174,9 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_whitespace() const noexcept
     {
-        return false;
+        return m_value == 0x0009 || m_value == 0x000A
+            || m_value == 0x000C || m_value == 0x000D
+            || m_value == 0x0020;
     }
 
     /**
@@ -181,7 +184,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_c0_control() const noexcept
     {
-        return false;
+        return m_value <= 0x001F;
     }
 
     /**
@@ -189,7 +192,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_c0_control_or_space() const noexcept
     {
-        return false;
+        return m_value <= 0x001F || m_value == 0x0020;
     }
 
     /**
@@ -197,7 +200,8 @@ public:
      */
     [[nodiscard]] constexpr bool is_control() const noexcept
     {
-        return false;
+        return m_value <= 0x001F || m_value == 0x007F
+            || (m_value >= 0x0080 && m_value <= 0x009F);
     }
 
     /**
@@ -205,7 +209,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_digit() const noexcept
     {
-        return false;
+        return m_value >= 0x0030 && m_value <= 0x0039;
     }
 
     /**
@@ -213,7 +217,8 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_upper_hex_digit() const noexcept
     {
-        return false;
+        return is_ascii_digit()
+            || (m_value >= 0x0041 && m_value <= 0x0046);
     }
 
     /**
@@ -221,7 +226,8 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_lower_hex_digit() const noexcept
     {
-        return false;
+        return is_ascii_digit()
+            || (m_value >= 0x0061 && m_value <= 0x0066);
     }
 
     /**
@@ -229,7 +235,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_hex_digit() const noexcept
     {
-        return false;
+        return is_ascii_upper_hex_digit() || is_ascii_lower_hex_digit();
     }
 
     /**
@@ -237,7 +243,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_upper_alpha() const noexcept
     {
-        return false;
+        return m_value >= 0x0041 && m_value <= 0x005A;
     }
 
     /**
@@ -245,7 +251,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_lower_alpha() const noexcept
     {
-        return false;
+        return m_value >= 0x0061 && m_value <= 0x007A;
     }
 
     /**
@@ -253,7 +259,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_alpha() const noexcept
     {
-        return false;
+        return is_ascii_upper_alpha() || is_ascii_lower_alpha();
     }
 
     /**
@@ -261,7 +267,7 @@ public:
      */
     [[nodiscard]] constexpr bool is_ascii_alphanumeric() const noexcept
     {
-        return false;
+        return is_ascii_digit() || is_ascii_alpha();
     }
 
 private:

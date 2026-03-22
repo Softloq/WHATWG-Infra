@@ -19,7 +19,7 @@
 
 inline std::ostream& operator<<(std::ostream& os, const Softloq::WHATWG::Infra::CodePoint& value)
 {
-    return os << static_cast<unsigned>(value.get_value());
+    return os << std::format("U+{:04X}", static_cast<unsigned>(value.get_value()));
 }
 
 #endif // SOFTLOQ_WHATWG_INFRA_PRIMITIVE_CODEPOINT_OSTREAM_INL
