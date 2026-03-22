@@ -15,6 +15,8 @@ Softloq/WHATWG/Infra/
 │   │   └── Boolean.cpp         - This implements the Boolean type for the WHATWG Infra library, representing a boolean value in the context of web APIs.
 │   ├── Byte/
 │   │   └── Byte.cpp            - This implements the Byte type for the WHATWG Infra library, representing a byte value in the context of web APIs.
+│   ├── ByteSequence/
+│   │   └── ByteSequence.cpp    - This implements the ByteSequence type for the WHATWG Infra library, representing a byte sequence in the context of web APIs.
 │   ├── CodePoint/
 │   │   └── CodePoint.cpp       - This implements the CodePoint type for the WHATWG Infra library, representing a Unicode code point in the context of web APIs.
 │   ├── Number/

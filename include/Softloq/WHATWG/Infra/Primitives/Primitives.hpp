@@ -14,6 +14,7 @@
 #include "Softloq/WHATWG/Infra/Primitive/Null/Null.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Boolean/Boolean.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Byte/Byte.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/ByteSequence/ByteSequence.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/CodePoint/CodePoint.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Numbers/Numbers.hpp"
 
