@@ -289,6 +289,75 @@ std::cout << Softloq::WHATWG::Infra::CodePoint{char32_t{0x0000}};               
 std::cout << Softloq::WHATWG::Infra::CodePoint{char32_t{0x10FFFF}};                        // "U+10FFFF"
 ```
 
+#### Code Unit
+
+> **Note:** `CodeUnit` is an auxiliary class to the String primitive. It represents a single element of a UTF-16 encoded string.
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/CodeUnit/CodeUnit.hpp>
+
+Softloq::WHATWG::Infra::CodeUnit cu;                         // 0x0000
+Softloq::WHATWG::Infra::CodeUnit cu_a{std::uint16_t{0x0041}}; // 0x0041 LATIN CAPITAL LETTER A
+```
+
+Get and set the underlying value:
+
+```cpp
+std::uint16_t raw = cu.get_value(); // 0x0000
+cu.set_value(std::uint16_t{0x0041});
+std::uint16_t raw2 = cu.get_value(); // 0x0041
+```
+
+Equality and inequality:
+
+```cpp
+Softloq::WHATWG::Infra::CodeUnit a{std::uint16_t{0x0041}};
+Softloq::WHATWG::Infra::CodeUnit b{std::uint16_t{0x0041}};
+bool equal = (a == b); // true
+bool diff  = (a != b); // false
+```
+
+Explicit conversion to `std::uint16_t`:
+
+```cpp
+std::uint16_t val = static_cast<std::uint16_t>(cu_a); // 0x0041
+```
+
+Unicode attribute predicates:
+
+```cpp
+using CU = Softloq::WHATWG::Infra::CodeUnit;
+
+CU{std::uint16_t{0xD800}}.is_surrogate();          // true  — 0xD800..0xDFFF
+CU{std::uint16_t{0xD800}}.is_leading_surrogate();  // true  — 0xD800..0xDBFF
+CU{std::uint16_t{0xDC00}}.is_trailing_surrogate(); // true  — 0xDC00..0xDFFF
+
+CU{std::uint16_t{0x0041}}.is_ascii();              // true  — 0x0000..0x007F
+CU{std::uint16_t{0x0009}}.is_ascii_tab_or_newline(); // true — 0x0009, 0x000A, 0x000D
+CU{std::uint16_t{0x0020}}.is_ascii_whitespace();   // true  — 0x0009, 0x000A, 0x000C, 0x000D, 0x0020
+CU{std::uint16_t{0x0000}}.is_c0_control();         // true  — 0x0000..0x001F
+CU{std::uint16_t{0x0020}}.is_c0_control_or_space(); // true — C0 control or 0x0020
+CU{std::uint16_t{0x007F}}.is_control();            // true  — C0, 0x007F, 0x0080..0x009F
+
+CU{std::uint16_t{0x0035}}.is_ascii_digit();             // true — 0x0030..0x0039
+CU{std::uint16_t{0x0046}}.is_ascii_upper_hex_digit();   // true — digit or 0x0041..0x0046
+CU{std::uint16_t{0x0066}}.is_ascii_lower_hex_digit();   // true — digit or 0x0061..0x0066
+CU{std::uint16_t{0x0061}}.is_ascii_hex_digit();         // true — upper or lower hex digit
+CU{std::uint16_t{0x0041}}.is_ascii_upper_alpha();       // true — 0x0041..0x005A
+CU{std::uint16_t{0x0061}}.is_ascii_lower_alpha();       // true — 0x0061..0x007A
+CU{std::uint16_t{0x0041}}.is_ascii_alpha();             // true — upper or lower alpha
+CU{std::uint16_t{0x0035}}.is_ascii_alphanumeric();      // true — digit or alpha
+```
+
+Supports `std::format` and `operator<<` (always formats as `0x` followed by four uppercase hex digits):
+
+```cpp
+std::string s = std::format("{}", Softloq::WHATWG::Infra::CodeUnit{std::uint16_t{0x0041}}); // "0x0041"
+std::cout << Softloq::WHATWG::Infra::CodeUnit{std::uint16_t{0x0000}};                        // "0x0000"
+std::cout << Softloq::WHATWG::Infra::CodeUnit{std::uint16_t{0xD800}};                        // "0xD800"
+std::cout << Softloq::WHATWG::Infra::CodeUnit{std::uint16_t{0xFFFF}};                        // "0xFFFF"
+```
+
 #### Number (Integer types)
 
 Eight strongly-typed integer aliases are provided, each wrapping the corresponding `std::intN_t` / `std::uintN_t` type:
