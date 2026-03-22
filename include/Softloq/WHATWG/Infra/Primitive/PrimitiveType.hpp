@@ -26,6 +26,7 @@ enum class PrimitiveType
     Null,
     Boolean,
     Byte,
+    CodePoint,
     Number
 };
 
