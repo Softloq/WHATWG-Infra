@@ -12,8 +12,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_NUMBER_HPP
 
 #include "Softloq/WHATWG/Infra/Primitive/Primitive.hpp"
-#include <concepts>
-#include <cstdint>
+#include "Softloq/WHATWG/Infra/Primitive/Number/Integral.hpp"
 
 namespace Softloq::WHATWG::Infra
 {
@@ -21,14 +20,14 @@ namespace Softloq::WHATWG::Infra
 /**
  * @brief The Number type represents an integer numeric value in the context of web APIs.
  *
- * The Number type is parameterized over any std::integral type T, covering all signed
+ * The Number type is parameterized over any Integral type T, covering all signed
  * and unsigned integer widths used by the WHATWG Infra specification. It provides
  * value construction, mutation, arithmetic, compound assignment, increment/decrement,
  * ordering comparison, and conversion to the underlying integral type.
  *
  * @tparam T An integral type (e.g. std::uint8_t, std::int32_t).
  */
-template <std::integral T>
+template <Integral T>
 class Number final : public Primitive
 {
 // Constructors and destructor

@@ -156,6 +156,74 @@ std::cout << Softloq::WHATWG::Infra::Byte{255};                        // "0xFF"
 std::cout << Softloq::WHATWG::Infra::Byte{0};                          // "0x00"
 ```
 
+#### Code Point
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/CodePoint/CodePoint.hpp>
+
+Softloq::WHATWG::Infra::CodePoint cp;                      // U+0000
+Softloq::WHATWG::Infra::CodePoint cp_a{char32_t{0x0041}}; // U+0041 LATIN CAPITAL LETTER A
+```
+
+Get and set the underlying value:
+
+```cpp
+char32_t raw = cp.get_value(); // U+0000
+cp.set_value(char32_t{0x0041});
+char32_t raw2 = cp.get_value(); // U+0041
+```
+
+Equality and inequality:
+
+```cpp
+Softloq::WHATWG::Infra::CodePoint a{char32_t{0x0041}};
+Softloq::WHATWG::Infra::CodePoint b{char32_t{0x0041}};
+bool equal = (a == b); // true
+bool diff  = (a != b); // false
+```
+
+Explicit conversion to `char32_t`:
+
+```cpp
+char32_t val = static_cast<char32_t>(cp_a); // 0x0041
+```
+
+Unicode attribute predicates:
+
+```cpp
+using CP = Softloq::WHATWG::Infra::CodePoint;
+
+CP{char32_t{0xD800}}.is_surrogate();          // true  — U+D800..U+DFFF
+CP{char32_t{0xD800}}.is_leading_surrogate();  // true  — U+D800..U+DBFF
+CP{char32_t{0xDC00}}.is_trailing_surrogate(); // true  — U+DC00..U+DFFF
+CP{char32_t{0x0041}}.is_scalar_value();       // true  — not a surrogate
+CP{char32_t{0xFFFE}}.is_noncharacter();       // true  — U+FDD0..U+FDEF, U+xFFFE, U+xFFFF
+
+CP{char32_t{0x0041}}.is_ascii();              // true  — U+0000..U+007F
+CP{char32_t{0x0009}}.is_ascii_tab_or_newline(); // true — U+0009, U+000A, U+000D
+CP{char32_t{0x0020}}.is_ascii_whitespace();   // true  — U+0009, U+000A, U+000C, U+000D, U+0020
+CP{char32_t{0x0000}}.is_c0_control();         // true  — U+0000..U+001F
+CP{char32_t{0x0020}}.is_c0_control_or_space(); // true — C0 control or U+0020
+CP{char32_t{0x007F}}.is_control();            // true  — C0, U+007F, U+0080..U+009F
+
+CP{char32_t{0x0035}}.is_ascii_digit();             // true — U+0030..U+0039
+CP{char32_t{0x0046}}.is_ascii_upper_hex_digit();   // true — digit or U+0041..U+0046
+CP{char32_t{0x0066}}.is_ascii_lower_hex_digit();   // true — digit or U+0061..U+0066
+CP{char32_t{0x0061}}.is_ascii_hex_digit();         // true — upper or lower hex digit
+CP{char32_t{0x0041}}.is_ascii_upper_alpha();       // true — U+0041..U+005A
+CP{char32_t{0x0061}}.is_ascii_lower_alpha();       // true — U+0061..U+007A
+CP{char32_t{0x0041}}.is_ascii_alpha();             // true — upper or lower alpha
+CP{char32_t{0x0035}}.is_ascii_alphanumeric();      // true — digit or alpha
+```
+
+Supports `std::format` and `operator<<` ("U+" followed by four to six uppercase hex digits):
+
+```cpp
+std::string s = std::format("{}", Softloq::WHATWG::Infra::CodePoint{char32_t{0x0041}});   // "U+0041"
+std::cout << Softloq::WHATWG::Infra::CodePoint{char32_t{0x0000}};                          // "U+0000"
+std::cout << Softloq::WHATWG::Infra::CodePoint{char32_t{0x10FFFF}};                        // "U+10FFFF"
+```
+
 #### Number (Integer types)
 
 Eight strongly-typed integer aliases are provided, each wrapping the corresponding `std::intN_t` / `std::uintN_t` type:

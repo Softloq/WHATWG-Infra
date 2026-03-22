@@ -13,23 +13,22 @@
 
 #include "Softloq/WHATWG/Infra/API-Library/Macro.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Primitive.hpp"
-#include <concepts>
-#include <cstdint>
+#include "Softloq/WHATWG/Infra/Primitive/Number/Integral.hpp"
 
 namespace Softloq::WHATWG::Infra
 {
 
 /**
- * @brief The Number type represents an integer numeric value in the context of web APIs.
+ * @brief The Number type represents an integral numeric value in the context of web APIs.
  *
- * The Number type is parameterized over any std::integral type T, covering all signed
+ * The Number type is parameterized over any Integral type T, covering all signed
  * and unsigned integer widths used by the WHATWG Infra specification. It provides
  * value construction, mutation, arithmetic, compound assignment, increment/decrement,
  * ordering comparison, and conversion to the underlying integral type.
  *
  * @tparam T An integral type (e.g. std::uint8_t, std::int32_t).
  */
-template <std::integral T>
+template <Integral T>
 class Number final : public Primitive
 {
 // Constructors and destructor
@@ -244,88 +243,88 @@ private:
 // Implementations
 // ---------------------------------------------------------------------------
 
-template <std::integral T>
+template <Integral T>
 Number<T>::Number() noexcept = default;
 
-template <std::integral T>
+template <Integral T>
 Number<T>::Number(T value) noexcept
     : m_value{value}
 {
 }
 
-template <std::integral T>
+template <Integral T>
 Number<T>::~Number() noexcept = default;
 
-template <std::integral T>
+template <Integral T>
 PrimitiveType Number<T>::get_type() const noexcept { return PrimitiveType::Number; }
 
-template <std::integral T>
+template <Integral T>
 T Number<T>::get_value() const noexcept { return m_value; }
 
-template <std::integral T>
+template <Integral T>
 void Number<T>::set_value(T value) noexcept { m_value = value; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>::operator T() const noexcept { return m_value; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator+(const Number& other) const noexcept { return Number{static_cast<T>(m_value + other.m_value)}; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator-(const Number& other) const noexcept { return Number{static_cast<T>(m_value - other.m_value)}; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator*(const Number& other) const noexcept { return Number{static_cast<T>(m_value * other.m_value)}; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator/(const Number& other) const noexcept { return Number{static_cast<T>(m_value / other.m_value)}; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator%(const Number& other) const noexcept { return Number{static_cast<T>(m_value % other.m_value)}; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator+=(const Number& other) noexcept { m_value += other.m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator-=(const Number& other) noexcept { m_value -= other.m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator*=(const Number& other) noexcept { m_value *= other.m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator/=(const Number& other) noexcept { m_value /= other.m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator%=(const Number& other) noexcept { m_value %= other.m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator++() noexcept { ++m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator++(int) noexcept { Number copy{m_value}; ++m_value; return copy; }
 
-template <std::integral T>
+template <Integral T>
 Number<T>& Number<T>::operator--() noexcept { --m_value; return *this; }
 
-template <std::integral T>
+template <Integral T>
 Number<T> Number<T>::operator--(int) noexcept { Number copy{m_value}; --m_value; return copy; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator==(const Number& other) const noexcept { return m_value == other.m_value; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator!=(const Number& other) const noexcept { return m_value != other.m_value; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator<(const Number& other) const noexcept { return m_value < other.m_value; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator<=(const Number& other) const noexcept { return m_value <= other.m_value; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator>(const Number& other) const noexcept { return m_value > other.m_value; }
 
-template <std::integral T>
+template <Integral T>
 bool Number<T>::operator>=(const Number& other) const noexcept { return m_value >= other.m_value; }
 
 } // namespace Softloq::WHATWG::Infra

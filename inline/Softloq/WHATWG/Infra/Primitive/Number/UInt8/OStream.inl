@@ -12,7 +12,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT8_OSTREAM_INL
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT8_OSTREAM_INL
 
-#include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include "Softloq/WHATWG/Infra/Primitive/Number/UInt8/UInt8.hpp"
 #include <ostream>
 
 inline std::ostream& operator<<(std::ostream& os, const Softloq::WHATWG::Infra::Number<std::uint8_t>& value)
