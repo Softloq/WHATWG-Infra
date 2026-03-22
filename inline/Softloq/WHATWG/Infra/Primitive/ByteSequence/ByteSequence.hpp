@@ -199,7 +199,10 @@ public:
      */
     [[nodiscard]] constexpr bool operator==(const ByteSequence& other) const noexcept
     {
-        return false;
+        if (m_bytes.size() != other.m_bytes.size()) return false;
+        for (std::size_t i = 0; i < m_bytes.size(); ++i)
+            if (m_bytes[i] != other.m_bytes[i]) return false;
+        return true;
     }
 
     /**
@@ -210,7 +213,7 @@ public:
      */
     [[nodiscard]] constexpr bool operator!=(const ByteSequence& other) const noexcept
     {
-        return false;
+        return !(*this == other);
     }
 
 // WHATWG Infra operations
@@ -220,14 +223,30 @@ public:
      *
      * As defined by the WHATWG Infra specification.
      */
-    constexpr void byte_lowercase() noexcept {}
+    constexpr void byte_lowercase() noexcept
+    {
+        for (auto& b : m_bytes)
+        {
+            const auto v = b.get_value();
+            if (v >= 0x41 && v <= 0x5A)
+                b.set_value(static_cast<std::uint8_t>(v + 0x20));
+        }
+    }
 
     /**
      * @brief Byte-uppercase: converts each byte in the range 0x61..0x7A (a–z) to 0x41..0x5A (A–Z) in place.
      *
      * As defined by the WHATWG Infra specification.
      */
-    constexpr void byte_uppercase() noexcept {}
+    constexpr void byte_uppercase() noexcept
+    {
+        for (auto& b : m_bytes)
+        {
+            const auto v = b.get_value();
+            if (v >= 0x61 && v <= 0x7A)
+                b.set_value(static_cast<std::uint8_t>(v - 0x20));
+        }
+    }
 
     /**
      * @brief Returns true if this byte sequence starts with the given byte sequence.
@@ -240,7 +259,10 @@ public:
      */
     [[nodiscard]] constexpr bool starts_with(const ByteSequence& other) const noexcept
     {
-        return false;
+        if (other.m_bytes.size() > m_bytes.size()) return false;
+        for (std::size_t i = 0; i < other.m_bytes.size(); ++i)
+            if (m_bytes[i] != other.m_bytes[i]) return false;
+        return true;
     }
 
 private:

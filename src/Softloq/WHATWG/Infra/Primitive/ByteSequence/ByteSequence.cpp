@@ -55,14 +55,45 @@ std::vector<Byte>::const_iterator ByteSequence::cbegin() const noexcept { return
 
 std::vector<Byte>::const_iterator ByteSequence::cend() const noexcept { return m_bytes.cend(); }
 
-bool ByteSequence::operator==(const ByteSequence& other) const noexcept { return false; }
+bool ByteSequence::operator==(const ByteSequence& other) const noexcept
+{
+    if (m_bytes.size() != other.m_bytes.size()) return false;
+    for (std::size_t i = 0; i < m_bytes.size(); ++i)
+        if (m_bytes[i] != other.m_bytes[i]) return false;
+    return true;
+}
 
-bool ByteSequence::operator!=(const ByteSequence& other) const noexcept { return false; }
+bool ByteSequence::operator!=(const ByteSequence& other) const noexcept
+{
+    return !(*this == other);
+}
 
-void ByteSequence::byte_lowercase() noexcept {}
+void ByteSequence::byte_lowercase() noexcept
+{
+    for (auto& b : m_bytes)
+    {
+        const auto v = b.get_value();
+        if (v >= 0x41 && v <= 0x5A)
+            b.set_value(static_cast<std::uint8_t>(v + 0x20));
+    }
+}
 
-void ByteSequence::byte_uppercase() noexcept {}
+void ByteSequence::byte_uppercase() noexcept
+{
+    for (auto& b : m_bytes)
+    {
+        const auto v = b.get_value();
+        if (v >= 0x61 && v <= 0x7A)
+            b.set_value(static_cast<std::uint8_t>(v - 0x20));
+    }
+}
 
-bool ByteSequence::starts_with(const ByteSequence& other) const noexcept { return false; }
+bool ByteSequence::starts_with(const ByteSequence& other) const noexcept
+{
+    if (other.m_bytes.size() > m_bytes.size()) return false;
+    for (std::size_t i = 0; i < other.m_bytes.size(); ++i)
+        if (m_bytes[i] != other.m_bytes[i]) return false;
+    return true;
+}
 
 } // namespace Softloq::WHATWG::Infra

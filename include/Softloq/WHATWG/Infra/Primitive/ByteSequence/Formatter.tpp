@@ -26,7 +26,14 @@ struct std::formatter<Softloq::WHATWG::Infra::ByteSequence> : std::formatter<std
 {
     inline auto format(const Softloq::WHATWG::Infra::ByteSequence& value, format_context& ctx) const
     {
-        return formatter<std::string>::format(std::string{}, ctx);
+        std::string result = "[";
+        for (std::size_t i = 0; i < value.size(); ++i)
+        {
+            if (i > 0) result += ' ';
+            result += std::format("0x{:02X}", static_cast<unsigned>(value[i].get_value()));
+        }
+        result += ']';
+        return formatter<std::string>::format(result, ctx);
     }
 };
 
