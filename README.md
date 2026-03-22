@@ -156,6 +156,71 @@ std::cout << Softloq::WHATWG::Infra::Byte{255};                        // "0xFF"
 std::cout << Softloq::WHATWG::Infra::Byte{0};                          // "0x00"
 ```
 
+#### Byte Sequence
+
+```cpp
+#include <Softloq/WHATWG/Infra/Primitive/ByteSequence/ByteSequence.hpp>
+
+Softloq::WHATWG::Infra::ByteSequence empty;                        // []
+Softloq::WHATWG::Infra::ByteSequence seq{0x48u, 0x69u};           // [0x48 0x69]
+```
+
+Construct from an initializer list of raw byte values (`std::uint8_t`):
+
+```cpp
+Softloq::WHATWG::Infra::ByteSequence hello{0x48u, 0x65u, 0x6Cu, 0x6Cu, 0x6Fu};
+```
+
+Container interface — size, emptiness, element access, mutation:
+
+```cpp
+std::size_t n = seq.size();    // 2
+bool empty    = seq.is_empty(); // false
+
+Softloq::WHATWG::Infra::Byte first = seq[0];          // 0x48
+Softloq::WHATWG::Infra::Byte& ref  = seq.at(1);       // 0x69 (throws std::out_of_range if invalid)
+
+seq.push_back(Softloq::WHATWG::Infra::Byte{std::uint8_t{0x21}}); // append 0x21
+seq.clear();                                                        // remove all bytes
+```
+
+Range-based iteration:
+
+```cpp
+for (const auto& b : seq)
+    std::cout << b; // prints each byte as 0xXX
+```
+
+Equality and inequality:
+
+```cpp
+Softloq::WHATWG::Infra::ByteSequence a{0x01u, 0x02u};
+Softloq::WHATWG::Infra::ByteSequence b{0x01u, 0x02u};
+bool equal = (a == b); // true
+bool diff  = (a != b); // false
+```
+
+WHATWG Infra operations:
+
+```cpp
+Softloq::WHATWG::Infra::ByteSequence s{0x48u, 0x65u, 0x6Cu, 0x6Cu, 0x6Fu}; // "Hello"
+s.byte_lowercase(); // [0x68 0x65 0x6C 0x6C 0x6F]  — A–Z → a–z, others unchanged
+s.byte_uppercase(); // [0x48 0x45 0x4C 0x4C 0x4F]  — a–z → A–Z, others unchanged
+
+Softloq::WHATWG::Infra::ByteSequence prefix{0x48u, 0x65u};
+bool starts = s.starts_with(prefix); // true — s begins with [0x48 0x65]
+```
+
+Supports `std::format` and `operator<<` (bytes formatted as `0x` followed by two uppercase hex digits, space-separated, wrapped in `[]`):
+
+```cpp
+Softloq::WHATWG::Infra::ByteSequence bs{0x01u, 0xABu, 0xFFu};
+std::string s = std::format("{}", bs); // "[0x01 0xAB 0xFF]"
+std::cout << bs;                        // "[0x01 0xAB 0xFF]"
+
+std::cout << Softloq::WHATWG::Infra::ByteSequence{}; // "[]"
+```
+
 #### Code Point
 
 ```cpp
