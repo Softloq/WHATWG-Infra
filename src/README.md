@@ -19,6 +19,8 @@ Softloq/WHATWG/Infra/
 │   │   └── ByteSequence.cpp    - This implements the ByteSequence type for the WHATWG Infra library, representing a byte sequence in the context of web APIs.
 │   ├── CodePoint/
 │   │   └── CodePoint.cpp       - This implements the CodePoint type for the WHATWG Infra library, representing a Unicode code point in the context of web APIs.
+│   ├── CodeUnit/
+│   │   └── CodeUnit.cpp        - This implements the CodeUnit type for the WHATWG Infra library, representing a UTF-16 code unit in the context of web APIs.
 │   ├── Number/
 │   │   ├── UInt8/
 │   │   │   └── UInt8.cpp       - This file provides the explicit instantiation of Number<std::uint8_t> for the WHATWG Infra library.

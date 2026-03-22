@@ -26,7 +26,7 @@ Operations and types that depend on multiple primitives being available, or that
 
 | Item | Skeleton | Test Cases | Implementation | Pass Tests |
 |------|:--------:|:----------:|:--------------:|:----------:|
-| Code Unit | ☐ | ☐ | ☐ | ☐ |
+| Code Unit | ✅ | ☐ | ☐ | ☐ |
 | Isomorphic Decode (ByteSequence → String) | ☐ | ☐ | ☐ | ☐ |
 
 > **Note:** Isomorphic decode is defined by the WHATWG Infra specification as converting a byte sequence to a string by mapping each byte to the corresponding Unicode code point. It requires the String primitive (Phase 1) to be implemented first.

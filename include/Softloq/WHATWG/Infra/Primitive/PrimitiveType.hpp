@@ -28,6 +28,7 @@ enum class PrimitiveType
     Byte,
     ByteSequence,
     CodePoint,
+    CodeUnit,
     Number
 };
 
