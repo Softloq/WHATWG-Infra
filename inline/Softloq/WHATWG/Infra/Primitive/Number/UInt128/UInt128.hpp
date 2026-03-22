@@ -13,6 +13,7 @@
 
 #include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
 #include "Softloq/WHATWG/Infra/Primitive/Number/UInt128/uint128_t.hpp"
+#include <cstdint>
 
 namespace Softloq::WHATWG::Infra
 {

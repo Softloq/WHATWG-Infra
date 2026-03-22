@@ -12,6 +12,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_UINT32_UINT32_HPP
 
 #include "Softloq/WHATWG/Infra/Primitive/Number/Number.hpp"
+#include <cstdint>
 
 namespace Softloq::WHATWG::Infra
 {
