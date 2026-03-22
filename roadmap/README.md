@@ -20,12 +20,13 @@ Each primitive requires both an implementation and test case coverage.
 
 ---
 
-## Phase 1.5 — Primitive Interop
+## Phase 1.5 — Primitive Interop & Auxiliary Classes
 
-Operations that depend on multiple primitives being available. Each operation requires both an implementation and test case coverage.
+Operations and types that depend on multiple primitives being available, or that support the primitives defined in Phase 1. Each item requires both an implementation and test case coverage.
 
-| Operation | Skeleton | Test Cases | Implementation | Pass Tests |
-|-----------|:--------:|:----------:|:--------------:|:----------:|
+| Item | Skeleton | Test Cases | Implementation | Pass Tests |
+|------|:--------:|:----------:|:--------------:|:----------:|
+| Code Unit | ☐ | ☐ | ☐ | ☐ |
 | Isomorphic Decode (ByteSequence → String) | ☐ | ☐ | ☐ | ☐ |
 
 > **Note:** Isomorphic decode is defined by the WHATWG Infra specification as converting a byte sequence to a string by mapping each byte to the corresponding Unicode code point. It requires the String primitive (Phase 1) to be implemented first.
