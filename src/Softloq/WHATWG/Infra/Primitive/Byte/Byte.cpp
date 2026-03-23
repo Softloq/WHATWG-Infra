@@ -16,6 +16,11 @@ namespace Softloq::WHATWG::Infra
 
 Byte::Byte() noexcept = default;
 
+Byte::Byte(const Byte& other) noexcept
+    : m_value{other.m_value}
+{
+}
+
 Byte::Byte(std::uint8_t value) noexcept
     : m_value{value}
 {

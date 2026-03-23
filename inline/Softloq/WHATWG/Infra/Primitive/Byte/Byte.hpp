@@ -35,6 +35,11 @@ public:
     {
     }
 
+    constexpr Byte(const Byte& other) noexcept
+        : m_value{other.m_value}
+    {
+    }
+
     constexpr ~Byte() noexcept = default;
 
 // Primitive interface

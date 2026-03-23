@@ -31,6 +31,7 @@ class Byte final : public Primitive
 public:
     SOFTLOQ_WHATWG_INFRA_API Byte() noexcept;
     SOFTLOQ_WHATWG_INFRA_API explicit Byte(std::uint8_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API Byte(const Byte& other) noexcept;
     SOFTLOQ_WHATWG_INFRA_API ~Byte() noexcept;
 
 // Primitive interface

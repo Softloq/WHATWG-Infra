@@ -17,8 +17,12 @@ Softloq/WHATWG/Infra/
 │   │   └── Boolean.hpp         - This header defines the Boolean type for the WHATWG Infra library, representing a boolean value in the context of web APIs.
 │   ├── Byte/
 │   │   └── Byte.hpp            - This header defines the Byte type for the WHATWG Infra library, representing a byte value in the context of web APIs.
+│   ├── ByteSequence/
+│   │   └── ByteSequence.hpp    - This header defines the ByteSequence type for the WHATWG Infra library, representing a byte sequence in the context of web APIs.
 │   ├── CodePoint/
 │   │   └── CodePoint.hpp       - This header defines the CodePoint type for the WHATWG Infra library, representing a Unicode code point in the context of web APIs.
+│   ├── CodeUnit/
+│   │   └── CodeUnit.hpp        - This header defines the CodeUnit type for the WHATWG Infra library, representing a UTF-16 code unit in the context of web APIs.
 │   ├── Number/
 │   │   ├── Number.hpp          - This header defines the Number type for the WHATWG Infra library, representing integer numeric values in the context of web APIs.
 │   │   ├── UInt8/
