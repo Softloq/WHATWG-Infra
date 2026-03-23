@@ -16,7 +16,12 @@ namespace Softloq::WHATWG::Infra
 
 ByteSequence::ByteSequence() noexcept = default;
 
-ByteSequence::ByteSequence(std::initializer_list<std::uint8_t> bytes)
+ByteSequence::ByteSequence(const ByteSequence& other) noexcept
+    : m_bytes{other.m_bytes}
+{
+}
+
+ByteSequence::ByteSequence(std::initializer_list<std::uint8_t> bytes) noexcept
 {
     m_bytes.reserve(bytes.size());
     for (auto b : bytes)

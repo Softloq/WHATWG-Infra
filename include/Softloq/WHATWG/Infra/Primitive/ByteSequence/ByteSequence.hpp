@@ -34,7 +34,8 @@ class ByteSequence final : public Primitive
 // Constructors and destructor
 public:
     SOFTLOQ_WHATWG_INFRA_API ByteSequence() noexcept;
-    SOFTLOQ_WHATWG_INFRA_API explicit ByteSequence(std::initializer_list<std::uint8_t> bytes);
+    SOFTLOQ_WHATWG_INFRA_API explicit ByteSequence(std::initializer_list<std::uint8_t> bytes) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ByteSequence(const ByteSequence& other) noexcept;
     SOFTLOQ_WHATWG_INFRA_API ~ByteSequence() noexcept;
 
 // Primitive interface

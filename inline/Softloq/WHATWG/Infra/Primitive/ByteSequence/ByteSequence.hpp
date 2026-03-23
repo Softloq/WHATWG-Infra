@@ -34,11 +34,16 @@ class ByteSequence final : public Primitive
 public:
     constexpr ByteSequence() noexcept = default;
 
-    explicit ByteSequence(std::initializer_list<std::uint8_t> bytes)
+    constexpr explicit ByteSequence(std::initializer_list<std::uint8_t> bytes) noexcept
     {
         m_bytes.reserve(bytes.size());
         for (auto b : bytes)
             m_bytes.emplace_back(Byte{b});
+    }
+
+    constexpr ByteSequence(const ByteSequence& other) noexcept
+        : m_bytes{other.m_bytes}
+    {
     }
 
     constexpr ~ByteSequence() noexcept = default;
